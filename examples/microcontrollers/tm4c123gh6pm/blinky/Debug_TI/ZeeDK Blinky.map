@@ -1,0 +1,346 @@
+******************************************************************************
+                  TI ARM Linker Unix v16.9.1                   
+******************************************************************************
+>> Linked Fri Sep 15 18:16:01 2017
+
+OUTPUT FILE NAME:   <ZeeDK Blinky.out>
+ENTRY POINT SYMBOL: "_c_int00"  address: 00001ed1
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  FLASH                 00000000   00040000  00002086  0003df7a  R  X
+  SRAM                  20000000   00008000  00000224  00007ddc  RW X
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+00000000    00000000    0000208c   0000208c    r-x
+  00000000    00000000    0000026c   0000026c    r-- .intvecs
+  0000026c    0000026c    00001dee   00001dee    r-x .text
+  00002060    00002060    0000002c   0000002c    r-- .cinit
+20000000    20000000    00000224   00000000    rw-
+  20000000    20000000    00000200   00000000    rw- .stack
+  20000200    20000200    00000024   00000000    rw- .data
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.intvecs   0    00000000    0000026c     
+                  00000000    0000026c     startup_ti_tm4c123gh6pm.obj (.intvecs)
+
+.text      0    0000026c    00001dee     
+                  0000026c    00001af0     ZeeDK Lib.lib : gpio.obj (.text)
+                  00001d5c    0000009c     rtsv7M4_T_le_v4SPD16_eabi.lib : memcpy_t2.obj (.text)
+                  00001df8    00000070                                   : autoinit.obj (.text)
+                  00001e68    00000068                                   : copy_decompress_lzss.obj (.text:decompress:lzss)
+                  00001ed0    00000054                                   : boot.obj (.text)
+                  00001f24    00000054                                   : exit.obj (.text)
+                  00001f78    0000004c                                   : cpy_tbl.obj (.text)
+                  00001fc4    00000048     blinky2.obj (.text)
+                  0000200c    00000018     rtsv7M4_T_le_v4SPD16_eabi.lib : args_main.obj (.text)
+                  00002024    00000014                                   : _lock.obj (.text)
+                  00002038    0000000e                                   : copy_decompress_none.obj (.text:decompress:none)
+                  00002046    0000000c     startup_ti_tm4c123gh6pm.obj (.text)
+                  00002052    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : pre_init.obj (.text)
+                  00002056    00000002                                   : mpu_init.obj (.text)
+                  00002058    00000002                                   : startup.obj (.text)
+
+.cinit     0    00002060    0000002c     
+                  00002060    00000019     (.cinit..data.load) [load image, compression = lzss]
+                  00002079    00000003     --HOLE-- [fill = 0]
+                  0000207c    00000008     (__TI_handler_table)
+                  00002084    00000008     (__TI_cinit_table)
+
+.init_array 
+*          0    00000000    00000000     UNINITIALIZED
+
+.data      0    20000200    00000024     UNINITIALIZED
+                  20000200    0000000c     rtsv7M4_T_le_v4SPD16_eabi.lib : exit.obj (.data:$O1$$)
+                  2000020c    0000000c     blinky2.obj (.data:redLed)
+                  20000218    00000008     rtsv7M4_T_le_v4SPD16_eabi.lib : _lock.obj (.data:$O1$$)
+                  20000220    00000004                                   : stkdepth_vars.obj (.data)
+
+.stack     0    20000000    00000200     UNINITIALIZED
+                  20000000    00000200     --HOLE--
+
+MODULE SUMMARY
+
+       Module                        code   ro data   rw data
+       ------                        ----   -------   -------
+    ./
+       startup_ti_tm4c123gh6pm.obj   12     620       0      
+       blinky2.obj                   72     0         12     
+    +--+-----------------------------+------+---------+---------+
+       Total:                        84     620       12     
+                                                             
+    /home/ahmed/.ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/lib/rtsv7M4_T_le_v4SPD16_eabi.lib
+       memcpy_t2.obj                 156    0         0      
+       autoinit.obj                  112    0         0      
+       copy_decompress_lzss.obj      104    0         0      
+       exit.obj                      84     0         12     
+       boot.obj                      84     0         0      
+       cpy_tbl.obj                   76     0         0      
+       _lock.obj                     20     0         8      
+       args_main.obj                 24     0         0      
+       copy_decompress_none.obj      14     0         0      
+       pre_init.obj                  4      0         0      
+       stkdepth_vars.obj             0      0         4      
+       mpu_init.obj                  2      0         0      
+       startup.obj                   2      0         0      
+    +--+-----------------------------+------+---------+---------+
+       Total:                        682    0         24     
+                                                             
+    /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_TI/ZeeDK Lib.lib
+       gpio.obj                      6896   0         0      
+    +--+-----------------------------+------+---------+---------+
+       Total:                        6896   0         0      
+                                                             
+       Stack:                        0      0         512    
+       Linker Generated:             0      41        0      
+    +--+-----------------------------+------+---------+---------+
+       Grand Total:                  7662   661       548    
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 00002084 records: 1, size/record: 8, table size: 8
+	.data: load addr=00002060, load size=00000019 bytes, run addr=20000200, run size=00000024 bytes, compression=lzss
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 0000207c records: 2, size/record: 4, table size: 8
+	index: 0, handler: __TI_decompress_lzss
+	index: 1, handler: __TI_decompress_none
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address   name                            
+-------   ----                            
+00001f25  C$$EXIT                         
+0000193d  GPIOPinInit                     
+00001c41  GPIOPinRead                     
+00001ad9  GPIOPinWrite                    
+00001a2d  GPIOPortInit                    
+00001cd5  GPIOPortRead                    
+00001b91  GPIOPortWrite                   
+00002047  ResetISR                        
+UNDEFED   SHT$$INIT_ARRAY$$Base           
+UNDEFED   SHT$$INIT_ARRAY$$Limit          
+20000200  __STACK_END                     
+00000200  __STACK_SIZE                    
+20000200  __STACK_TOP                     
+00002084  __TI_CINIT_Base                 
+0000208c  __TI_CINIT_Limit                
+0000207c  __TI_Handler_Table_Base         
+00002084  __TI_Handler_Table_Limit        
+00001df9  __TI_auto_init                  
+20000200  __TI_cleanup_ptr                
+00001e69  __TI_decompress_lzss            
+00002039  __TI_decompress_none            
+20000204  __TI_dtors_ptr                  
+20000208  __TI_enable_exit_profile_output 
+ffffffff  __TI_pprof_out_hndl             
+ffffffff  __TI_prof_data_size             
+ffffffff  __TI_prof_data_start            
+00000000  __TI_static_base__              
+00001d5d  __aeabi_memcpy                  
+00001d5d  __aeabi_memcpy4                 
+00001d5d  __aeabi_memcpy8                 
+ffffffff  __binit__                       
+ffffffff  __c_args__                      
+00002057  __mpu_init                      
+20000000  __stack                         
+0000200d  _args_main                      
+00001ed1  _c_int00                        
+20000218  _lock                           
+00002033  _nop                            
+0000202b  _register_lock                  
+00002025  _register_unlock                
+00002059  _system_post_cinit              
+00002053  _system_pre_init                
+2000021c  _unlock                         
+00001f29  abort                           
+ffffffff  binit                           
+00001f79  copy_in                         
+00001f31  exit                            
+00000000  g_pfnVectors                    
+000018cd  gpio_field_masked_write         
+000018f5  gpio_field_read                 
+00001883  gpio_field_write                
+000015fb  gpio_pin_clear_intr             
+00001677  gpio_pin_get_adc_trgr           
+00000dc9  gpio_pin_get_alt_func           
+00000e83  gpio_pin_get_curr               
+000008f7  gpio_pin_get_dir                
+00001745  gpio_pin_get_dma_trgr           
+00001143  gpio_pin_get_intr               
+000012dd  gpio_pin_get_intr_mode          
+0000104d  gpio_pin_get_lock               
+000015c3  gpio_pin_get_masked_intr_status 
+00000619  gpio_pin_get_mode               
+0000158b  gpio_pin_get_raw_intr_status    
+00000fe1  gpio_pin_lock                   
+00001813  gpio_pin_read                   
+0000162b  gpio_pin_set_adc_trgr           
+00000d71  gpio_pin_set_alt_func           
+00000df9  gpio_pin_set_curr               
+0000070d  gpio_pin_set_dir                
+000016f9  gpio_pin_set_dma_trgr           
+000010f7  gpio_pin_set_intr               
+000011c5  gpio_pin_set_intr_mode          
+000005b1  gpio_pin_set_mode               
+0000100b  gpio_pin_unlock                 
+000017c7  gpio_pin_write                  
+00001615  gpio_port_clear_intr            
+000016dd  gpio_port_get_adc_trgr          
+00000f65  gpio_port_get_curr              
+00000c17  gpio_port_get_dir               
+000017ab  gpio_port_get_dma_trgr          
+000011a9  gpio_port_get_intr              
+000014b7  gpio_port_get_intr_mode         
+000010d1  gpio_port_get_lock              
+000015e3  gpio_port_get_masked_intr_status
+000006a1  gpio_port_get_mode              
+000015ab  gpio_port_get_raw_intr_status   
+00001075  gpio_port_lock                  
+0000184d  gpio_port_masked_write          
+0000186b  gpio_port_read                  
+00001697  gpio_port_set_adc_trgr          
+000003d7  gpio_port_set_clk               
+00000edf  gpio_port_set_curr              
+00000513  gpio_port_set_deepsleep_clk     
+00000a55  gpio_port_set_dir               
+00001765  gpio_port_set_dma_trgr          
+00001163  gpio_port_set_intr              
+000013bb  gpio_port_set_intr_mode         
+00000641  gpio_port_set_mode              
+00000475  gpio_port_set_sleep_clk         
+00001097  gpio_port_unlock                
+00001833  gpio_port_write                 
+00001fc5  main                            
+20000220  main_func_sp                    
+00001d5d  memcpy                          
+2000020c  redLed                          
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address   name                            
+-------   ----                            
+00000000  __TI_static_base__              
+00000000  g_pfnVectors                    
+00000200  __STACK_SIZE                    
+000003d7  gpio_port_set_clk               
+00000475  gpio_port_set_sleep_clk         
+00000513  gpio_port_set_deepsleep_clk     
+000005b1  gpio_pin_set_mode               
+00000619  gpio_pin_get_mode               
+00000641  gpio_port_set_mode              
+000006a1  gpio_port_get_mode              
+0000070d  gpio_pin_set_dir                
+000008f7  gpio_pin_get_dir                
+00000a55  gpio_port_set_dir               
+00000c17  gpio_port_get_dir               
+00000d71  gpio_pin_set_alt_func           
+00000dc9  gpio_pin_get_alt_func           
+00000df9  gpio_pin_set_curr               
+00000e83  gpio_pin_get_curr               
+00000edf  gpio_port_set_curr              
+00000f65  gpio_port_get_curr              
+00000fe1  gpio_pin_lock                   
+0000100b  gpio_pin_unlock                 
+0000104d  gpio_pin_get_lock               
+00001075  gpio_port_lock                  
+00001097  gpio_port_unlock                
+000010d1  gpio_port_get_lock              
+000010f7  gpio_pin_set_intr               
+00001143  gpio_pin_get_intr               
+00001163  gpio_port_set_intr              
+000011a9  gpio_port_get_intr              
+000011c5  gpio_pin_set_intr_mode          
+000012dd  gpio_pin_get_intr_mode          
+000013bb  gpio_port_set_intr_mode         
+000014b7  gpio_port_get_intr_mode         
+0000158b  gpio_pin_get_raw_intr_status    
+000015ab  gpio_port_get_raw_intr_status   
+000015c3  gpio_pin_get_masked_intr_status 
+000015e3  gpio_port_get_masked_intr_status
+000015fb  gpio_pin_clear_intr             
+00001615  gpio_port_clear_intr            
+0000162b  gpio_pin_set_adc_trgr           
+00001677  gpio_pin_get_adc_trgr           
+00001697  gpio_port_set_adc_trgr          
+000016dd  gpio_port_get_adc_trgr          
+000016f9  gpio_pin_set_dma_trgr           
+00001745  gpio_pin_get_dma_trgr           
+00001765  gpio_port_set_dma_trgr          
+000017ab  gpio_port_get_dma_trgr          
+000017c7  gpio_pin_write                  
+00001813  gpio_pin_read                   
+00001833  gpio_port_write                 
+0000184d  gpio_port_masked_write          
+0000186b  gpio_port_read                  
+00001883  gpio_field_write                
+000018cd  gpio_field_masked_write         
+000018f5  gpio_field_read                 
+0000193d  GPIOPinInit                     
+00001a2d  GPIOPortInit                    
+00001ad9  GPIOPinWrite                    
+00001b91  GPIOPortWrite                   
+00001c41  GPIOPinRead                     
+00001cd5  GPIOPortRead                    
+00001d5d  __aeabi_memcpy                  
+00001d5d  __aeabi_memcpy4                 
+00001d5d  __aeabi_memcpy8                 
+00001d5d  memcpy                          
+00001df9  __TI_auto_init                  
+00001e69  __TI_decompress_lzss            
+00001ed1  _c_int00                        
+00001f25  C$$EXIT                         
+00001f29  abort                           
+00001f31  exit                            
+00001f79  copy_in                         
+00001fc5  main                            
+0000200d  _args_main                      
+00002025  _register_unlock                
+0000202b  _register_lock                  
+00002033  _nop                            
+00002039  __TI_decompress_none            
+00002047  ResetISR                        
+00002053  _system_pre_init                
+00002057  __mpu_init                      
+00002059  _system_post_cinit              
+0000207c  __TI_Handler_Table_Base         
+00002084  __TI_CINIT_Base                 
+00002084  __TI_Handler_Table_Limit        
+0000208c  __TI_CINIT_Limit                
+20000000  __stack                         
+20000200  __STACK_END                     
+20000200  __STACK_TOP                     
+20000200  __TI_cleanup_ptr                
+20000204  __TI_dtors_ptr                  
+20000208  __TI_enable_exit_profile_output 
+2000020c  redLed                          
+20000218  _lock                           
+2000021c  _unlock                         
+20000220  main_func_sp                    
+ffffffff  __TI_pprof_out_hndl             
+ffffffff  __TI_prof_data_size             
+ffffffff  __TI_prof_data_start            
+ffffffff  __binit__                       
+ffffffff  __c_args__                      
+ffffffff  binit                           
+UNDEFED   SHT$$INIT_ARRAY$$Base           
+UNDEFED   SHT$$INIT_ARRAY$$Limit          
+
+[105 symbols]
