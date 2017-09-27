@@ -10,7 +10,7 @@ gpio_interrupt2.obj: /media/ahmed/Data/Workshop/Embedded\ Systems/Microcontrolle
 gpio_interrupt2.obj: /media/ahmed/Data/Workshop/Embedded\ Systems/Microcontroller/ARM\ Microcontroller/CodeComposerStudio/ZeeDK/lib/HAL/../REG/../config.h
 gpio_interrupt2.obj: /media/ahmed/Data/Workshop/Embedded\ Systems/Microcontroller/ARM\ Microcontroller/CodeComposerStudio/ZeeDK/lib/HAL/../REG/hw_sysctl.h
 gpio_interrupt2.obj: /media/ahmed/Data/Workshop/Embedded\ Systems/Microcontroller/ARM\ Microcontroller/CodeComposerStudio/ZeeDK/lib/SERVICE/interrupt.h
-gpio_interrupt2.obj: /media/ahmed/Data/Workshop/Embedded\ Systems/Microcontroller/ARM\ Microcontroller/CodeComposerStudio/ZeeDK/lib/SERVICE/../REG/hw_nvic.h
+gpio_interrupt2.obj: /media/ahmed/Data/Workshop/Embedded\ Systems/Microcontroller/ARM\ Microcontroller/CodeComposerStudio/ZeeDK/lib/SERVICE/../REG/hw_core.h
 
 ../gpio_interrupt2.c: 
 ../config.h: 
@@ -22,4 +22,4 @@ gpio_interrupt2.obj: /media/ahmed/Data/Workshop/Embedded\ Systems/Microcontrolle
 /media/ahmed/Data/Workshop/Embedded\ Systems/Microcontroller/ARM\ Microcontroller/CodeComposerStudio/ZeeDK/lib/HAL/../REG/../config.h: 
 /media/ahmed/Data/Workshop/Embedded\ Systems/Microcontroller/ARM\ Microcontroller/CodeComposerStudio/ZeeDK/lib/HAL/../REG/hw_sysctl.h: 
 /media/ahmed/Data/Workshop/Embedded\ Systems/Microcontroller/ARM\ Microcontroller/CodeComposerStudio/ZeeDK/lib/SERVICE/interrupt.h: 
-/media/ahmed/Data/Workshop/Embedded\ Systems/Microcontroller/ARM\ Microcontroller/CodeComposerStudio/ZeeDK/lib/SERVICE/../REG/hw_nvic.h: 
+/media/ahmed/Data/Workshop/Embedded\ Systems/Microcontroller/ARM\ Microcontroller/CodeComposerStudio/ZeeDK/lib/SERVICE/../REG/hw_core.h: 

@@ -21,47 +21,40 @@
 *                            Macros & Typedef                          *
 ***********************************************************************/
 
-#define BASEA   BASE_A
-#define BASEB   BASE_B
-#define BASEC   BASE_C
-#define BASED   BASE_D
-#define BASEE   BASE_E
-#define BASEF   BASE_F
+#define PORTA   BASE_PORTA
+#define PORTB   BASE_PORTB
+#define PORTC   BASE_PORTC
+#define PORTD   BASE_PORTD
+#define PORTE   BASE_PORTE
+#define PORTF   BASE_PORTF
 
-#define PORTA   BASE_A
-#define PORTB   BASE_B
-#define PORTC   BASE_C
-#define PORTD   BASE_D
-#define PORTE   BASE_E
-#define PORTF   BASE_F
-
-#define PORT_A  BASE_A
-#define PORT_B  BASE_B
-#define PORT_C  BASE_C
-#define PORT_D  BASE_D
-#define PORT_E  BASE_E
-#define PORT_F  BASE_F
+#define PORT_A  BASE_PORTA
+#define PORT_B  BASE_PORTB
+#define PORT_C  BASE_PORTC
+#define PORT_D  BASE_PORTD
+#define PORT_E  BASE_PORTE
+#define PORT_F  BASE_PORTF
 
 
 #ifdef APB
 
 /* When using Advanced Peripheral Bus */
-#define BASE_A 0x40004000
-#define BASE_B 0x40005000
-#define BASE_C 0x40006000
-#define BASE_D 0x40007000
-#define BASE_E 0x40024000
-#define BASE_F 0x40025000
+#define BASE_PORTA 0x40004000
+#define BASE_PORTB 0x40005000
+#define BASE_PORTC 0x40006000
+#define BASE_PORTD 0x40007000
+#define BASE_PORTE 0x40024000
+#define BASE_PORTF 0x40025000
 
 #else
 
 /* When using Advanced High-Performance Bus */
-#define BASE_A 0x40058000
-#define BASE_B 0x40059000
-#define BASE_C 0x4005A000
-#define BASE_D 0x4005B000
-#define BASE_E 0x4005C000
-#define BASE_F 0x4005D000
+#define BASE_PORTA 0x40058000
+#define BASE_PORTB 0x40059000
+#define BASE_PORTC 0x4005A000
+#define BASE_PORTD 0x4005B000
+#define BASE_PORTE 0x4005C000
+#define BASE_PORTF 0x4005D000
 
 #endif
 

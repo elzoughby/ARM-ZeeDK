@@ -10,7 +10,7 @@ blinky2.obj: /media/ahmed/Data/Workshop/Embedded\ Systems/Microcontroller/ARM\ M
 blinky2.obj: /media/ahmed/Data/Workshop/Embedded\ Systems/Microcontroller/ARM\ Microcontroller/CodeComposerStudio/ZeeDK/lib/HAL/../REG/../config.h
 blinky2.obj: /media/ahmed/Data/Workshop/Embedded\ Systems/Microcontroller/ARM\ Microcontroller/CodeComposerStudio/ZeeDK/lib/HAL/../REG/hw_sysctl.h
 blinky2.obj: /media/ahmed/Data/Workshop/Embedded\ Systems/Microcontroller/ARM\ Microcontroller/CodeComposerStudio/ZeeDK/lib/SERVICE/interrupt.h
-blinky2.obj: /media/ahmed/Data/Workshop/Embedded\ Systems/Microcontroller/ARM\ Microcontroller/CodeComposerStudio/ZeeDK/lib/SERVICE/../REG/hw_nvic.h
+blinky2.obj: /media/ahmed/Data/Workshop/Embedded\ Systems/Microcontroller/ARM\ Microcontroller/CodeComposerStudio/ZeeDK/lib/SERVICE/../REG/hw_core.h
 
 ../blinky2.c: 
 ../config.h: 
@@ -22,4 +22,4 @@ blinky2.obj: /media/ahmed/Data/Workshop/Embedded\ Systems/Microcontroller/ARM\ M
 /media/ahmed/Data/Workshop/Embedded\ Systems/Microcontroller/ARM\ Microcontroller/CodeComposerStudio/ZeeDK/lib/HAL/../REG/../config.h: 
 /media/ahmed/Data/Workshop/Embedded\ Systems/Microcontroller/ARM\ Microcontroller/CodeComposerStudio/ZeeDK/lib/HAL/../REG/hw_sysctl.h: 
 /media/ahmed/Data/Workshop/Embedded\ Systems/Microcontroller/ARM\ Microcontroller/CodeComposerStudio/ZeeDK/lib/SERVICE/interrupt.h: 
-/media/ahmed/Data/Workshop/Embedded\ Systems/Microcontroller/ARM\ Microcontroller/CodeComposerStudio/ZeeDK/lib/SERVICE/../REG/hw_nvic.h: 
+/media/ahmed/Data/Workshop/Embedded\ Systems/Microcontroller/ARM\ Microcontroller/CodeComposerStudio/ZeeDK/lib/SERVICE/../REG/hw_core.h: 

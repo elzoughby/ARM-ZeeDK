@@ -9,6 +9,7 @@ GEN_CMDS__FLAG :=
 
 ORDERED_OBJS += \
 "./HAL/gpio.o" \
+"./HAL/timer.o" \
 "./SERVICE/interrupt.o" \
 
 -include ../makefile.init
@@ -140,8 +141,8 @@ endif
 # Other Targets
 clean:
 	-$(RM) $(LIB_OUTPUTS__QUOTED)
-	-$(RM) "HAL/gpio.o" "SERVICE/interrupt.o" 
-	-$(RM) "HAL/gpio.d" "SERVICE/interrupt.d" 
+	-$(RM) "HAL/gpio.o" "HAL/timer.o" "SERVICE/interrupt.o" 
+	-$(RM) "HAL/gpio.d" "HAL/timer.d" "SERVICE/interrupt.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

@@ -44,17 +44,17 @@ gpio_error_t gpio_port_set_clk(uint32_t base, bit_t state)
     gpio_error_t result = GPIO_STATE_SUCCESS;
 
     if(base == PORTA)
-        HW_REG32_BIT_WRITE(GPIO_CLK_CTL, 0, state);
+        HW_REG32_BIT_WRITE(BASE_SYSCTL + OFFSET_RCGCGPIO, 0, state);
     else if(base == PORTB)
-        HW_REG32_BIT_WRITE(GPIO_CLK_CTL, 1, state);
+        HW_REG32_BIT_WRITE(BASE_SYSCTL + OFFSET_RCGCGPIO, 1, state);
     else if(base == PORTC)
-        HW_REG32_BIT_WRITE(GPIO_CLK_CTL, 2, state);
+        HW_REG32_BIT_WRITE(BASE_SYSCTL + OFFSET_RCGCGPIO, 2, state);
     else if(base == PORTD)
-        HW_REG32_BIT_WRITE(GPIO_CLK_CTL, 3, state);
+        HW_REG32_BIT_WRITE(BASE_SYSCTL + OFFSET_RCGCGPIO, 3, state);
     else if(base == PORTE)
-        HW_REG32_BIT_WRITE(GPIO_CLK_CTL, 4, state);
+        HW_REG32_BIT_WRITE(BASE_SYSCTL + OFFSET_RCGCGPIO, 4, state);
     else if(base == PORTF)
-        HW_REG32_BIT_WRITE(GPIO_CLK_CTL, 5, state);
+        HW_REG32_BIT_WRITE(BASE_SYSCTL + OFFSET_RCGCGPIO, 5, state);
     else
         result = GPIO_STATE_PORT_ERROR;
 
@@ -66,17 +66,17 @@ gpio_error_t gpio_port_set_sleep_clk(uint32_t base, bit_t state)
     gpio_error_t result = GPIO_STATE_SUCCESS;
 
     if(base == PORTA)
-        HW_REG32_BIT_WRITE(GPIO_SLEEP_CLK_CTL, 0, state);
+        HW_REG32_BIT_WRITE(BASE_SYSCTL + OFFSET_SCGCGPIO, 0, state);
     else if(base == PORTB)
-        HW_REG32_BIT_WRITE(GPIO_SLEEP_CLK_CTL, 1, state);
+        HW_REG32_BIT_WRITE(BASE_SYSCTL + OFFSET_SCGCGPIO, 1, state);
     else if(base == PORTC)
-        HW_REG32_BIT_WRITE(GPIO_SLEEP_CLK_CTL, 2, state);
+        HW_REG32_BIT_WRITE(BASE_SYSCTL + OFFSET_SCGCGPIO, 2, state);
     else if(base == PORTD)
-        HW_REG32_BIT_WRITE(GPIO_SLEEP_CLK_CTL, 3, state);
+        HW_REG32_BIT_WRITE(BASE_SYSCTL + OFFSET_SCGCGPIO, 3, state);
     else if(base == PORTE)
-        HW_REG32_BIT_WRITE(GPIO_SLEEP_CLK_CTL, 4, state);
+        HW_REG32_BIT_WRITE(BASE_SYSCTL + OFFSET_SCGCGPIO, 4, state);
     else if(base == PORTF)
-        HW_REG32_BIT_WRITE(GPIO_SLEEP_CLK_CTL, 5, state);
+        HW_REG32_BIT_WRITE(BASE_SYSCTL + OFFSET_SCGCGPIO, 5, state);
     else
         result = GPIO_STATE_PORT_ERROR;
 
@@ -88,17 +88,17 @@ gpio_error_t gpio_port_set_deepsleep_clk(uint32_t base, bit_t state)
     gpio_error_t result = GPIO_STATE_SUCCESS;
 
     if(base == PORTA)
-        HW_REG32_BIT_WRITE(GPIO_DEEPSLEEP_CLK_CTL, 0, state);
+        HW_REG32_BIT_WRITE(BASE_SYSCTL + OFFSET_DCGCGPIO, 0, state);
     else if(base == PORTB)
-        HW_REG32_BIT_WRITE(GPIO_DEEPSLEEP_CLK_CTL, 1, state);
+        HW_REG32_BIT_WRITE(BASE_SYSCTL + OFFSET_DCGCGPIO, 1, state);
     else if(base == PORTC)
-        HW_REG32_BIT_WRITE(GPIO_DEEPSLEEP_CLK_CTL, 2, state);
+        HW_REG32_BIT_WRITE(BASE_SYSCTL + OFFSET_DCGCGPIO, 2, state);
     else if(base == PORTD)
-        HW_REG32_BIT_WRITE(GPIO_DEEPSLEEP_CLK_CTL, 3, state);
+        HW_REG32_BIT_WRITE(BASE_SYSCTL + OFFSET_DCGCGPIO, 3, state);
     else if(base == PORTE)
-        HW_REG32_BIT_WRITE(GPIO_DEEPSLEEP_CLK_CTL, 4, state);
+        HW_REG32_BIT_WRITE(BASE_SYSCTL + OFFSET_DCGCGPIO, 4, state);
     else if(base == PORTF)
-        HW_REG32_BIT_WRITE(GPIO_DEEPSLEEP_CLK_CTL, 5, state);
+        HW_REG32_BIT_WRITE(BASE_SYSCTL + OFFSET_DCGCGPIO, 5, state);
     else
         result = GPIO_STATE_PORT_ERROR;
 
