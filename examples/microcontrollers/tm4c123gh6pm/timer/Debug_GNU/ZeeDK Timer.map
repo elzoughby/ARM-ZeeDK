@@ -1,5 +1,11 @@
 Archive member included because of file (symbol)
 
+/media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                              ./timer.o (gpio_port_set_clk)
+/media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+                              ./timer.o (timer_set_clk)
+/media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+                              ./timer.o (intr_init)
 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-exit.o)
                               /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/crt0.o (exit)
 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-impure.o)
@@ -31,8 +37,9 @@ Linker script and memory map
 LOAD /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crti.o
 LOAD /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
 LOAD /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/crt0.o
-LOAD ./main.o
 LOAD ./startup_gnu_tm4c123gh6pm.o
+LOAD ./timer.o
+LOAD ./timer2.o
                 0x00000000                PROVIDE (_intvecs_base_address, 0x0)
 
 .intvecs        0x00000000      0x26c
@@ -44,7 +51,7 @@ LOAD ./startup_gnu_tm4c123gh6pm.o
 .vtable
  *(.vtable)
 
-.text           0x0000026c      0x458
+.text           0x0000026c     0x3e10
  CREATE_OBJECT_SYMBOLS
  *(.text)
  .text          0x0000026c        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crti.o
@@ -52,8 +59,12 @@ LOAD ./startup_gnu_tm4c123gh6pm.o
  .text          0x000002c8       0x74 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/crt0.o
                 0x000002c8                _mainCRTStartup
                 0x000002c8                _start
- .text          0x0000033c        0x0 ./main.o
  .text          0x0000033c        0x0 ./startup_gnu_tm4c123gh6pm.o
+ .text          0x0000033c        0x0 ./timer.o
+ .text          0x0000033c        0x0 ./timer2.o
+ .text          0x0000033c        0x0 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+ .text          0x0000033c        0x0 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+ .text          0x0000033c        0x0 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
  .text          0x0000033c        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-exit.o)
  .text          0x0000033c        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-impure.o)
  .text          0x0000033c        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-init.o)
@@ -66,101 +77,451 @@ LOAD ./startup_gnu_tm4c123gh6pm.o
  .text          0x0000033c        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtend.o
  .text          0x0000033c        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtn.o
  *(.text.*)
- .text.main     0x0000033c       0x10 ./main.o
-                0x0000033c                main
  .text.ResetISR
-                0x0000034c       0x68 ./startup_gnu_tm4c123gh6pm.o
-                0x0000034c                ResetISR
- .text.NmiSR    0x000003b4        0x8 ./startup_gnu_tm4c123gh6pm.o
+                0x0000033c       0x68 ./startup_gnu_tm4c123gh6pm.o
+                0x0000033c                ResetISR
+ .text.NmiSR    0x000003a4        0x8 ./startup_gnu_tm4c123gh6pm.o
  .text.FaultISR
-                0x000003bc        0x8 ./startup_gnu_tm4c123gh6pm.o
+                0x000003ac        0x8 ./startup_gnu_tm4c123gh6pm.o
  .text.IntDefaultHandler
-                0x000003c4        0x8 ./startup_gnu_tm4c123gh6pm.o
- .text.exit     0x000003cc       0x20 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-exit.o)
-                0x000003cc                exit
+                0x000003b4        0x8 ./startup_gnu_tm4c123gh6pm.o
+ .text.hw_reg32_bit_set
+                0x000003bc       0x28 ./timer.o
+ .text.main     0x000003e4       0x8c ./timer.o
+                0x000003e4                main
+ .text.handler  0x00000470       0x40 ./timer.o
+                0x00000470                handler
+ .text.hw_reg32_read
+                0x000004b0       0x18 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+ .text.hw_reg32_write
+                0x000004c8       0x1c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+ .text.hw_reg32_bit_read
+                0x000004e4       0x30 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+ .text.hw_reg32_bit_set
+                0x00000514       0x28 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+ .text.hw_reg32_bit_clear
+                0x0000053c       0x2c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+ .text.hw_reg32_bit_write
+                0x00000568       0x44 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+ .text.hw_reg32_field_read
+                0x000005ac       0x40 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+ .text.hw_reg32_field_write
+                0x000005ec       0x50 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+ .text.hw_reg32_field_masked_write
+                0x0000063c       0x44 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+ .text.gpio_port_set_clk
+                0x00000680       0xbc /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00000680                gpio_port_set_clk
+ .text.gpio_port_set_sleep_clk
+                0x0000073c       0xbc /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x0000073c                gpio_port_set_sleep_clk
+ .text.gpio_port_set_deepsleep_clk
+                0x000007f8       0xbc /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x000007f8                gpio_port_set_deepsleep_clk
+ .text.gpio_pin_set_mode
+                0x000008b4       0x74 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x000008b4                gpio_pin_set_mode
+ .text.gpio_pin_get_mode
+                0x00000928       0x3c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00000928                gpio_pin_get_mode
+ .text.gpio_port_set_mode
+                0x00000964       0x6c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00000964                gpio_port_set_mode
+ .text.gpio_port_get_mode
+                0x000009d0       0x58 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x000009d0                gpio_port_get_mode
+ .text.gpio_pin_set_dir
+                0x00000a28      0x21c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00000a28                gpio_pin_set_dir
+ .text.gpio_pin_get_dir
+                0x00000c44      0x150 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00000c44                gpio_pin_get_dir
+ .text.gpio_port_set_dir
+                0x00000d94      0x1f4 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00000d94                gpio_port_set_dir
+ .text.gpio_port_get_dir
+                0x00000f88      0x14c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00000f88                gpio_port_get_dir
+ .text.gpio_pin_set_alt_func
+                0x000010d4       0x58 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x000010d4                gpio_pin_set_alt_func
+ .text.gpio_pin_get_alt_func
+                0x0000112c       0x40 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x0000112c                gpio_pin_get_alt_func
+ .text.gpio_pin_set_curr
+                0x0000116c       0x94 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x0000116c                gpio_pin_set_curr
+ .text.gpio_pin_get_curr
+                0x00001200       0x78 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001200                gpio_pin_get_curr
+ .text.gpio_port_set_curr
+                0x00001278       0x90 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001278                gpio_port_set_curr
+ .text.gpio_port_get_curr
+                0x00001308       0x80 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001308                gpio_port_get_curr
+ .text.gpio_pin_lock
+                0x00001388       0x38 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001388                gpio_pin_lock
+ .text.gpio_pin_unlock
+                0x000013c0       0x50 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x000013c0                gpio_pin_unlock
+ .text.gpio_pin_get_lock
+                0x00001410       0x3c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001410                gpio_pin_get_lock
+ .text.gpio_port_lock
+                0x0000144c       0x30 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x0000144c                gpio_port_lock
+ .text.gpio_port_unlock
+                0x0000147c       0x48 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x0000147c                gpio_port_unlock
+ .text.gpio_port_get_lock
+                0x000014c4       0x38 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x000014c4                gpio_port_get_lock
+ .text.gpio_pin_set_intr
+                0x000014fc       0x54 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x000014fc                gpio_pin_set_intr
+ .text.gpio_pin_get_intr
+                0x00001550       0x30 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001550                gpio_pin_get_intr
+ .text.gpio_port_set_intr
+                0x00001580       0x4c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001580                gpio_port_set_intr
+ .text.gpio_port_get_intr
+                0x000015cc       0x2c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x000015cc                gpio_port_get_intr
+ .text.gpio_pin_set_intr_mode
+                0x000015f8      0x12c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x000015f8                gpio_pin_set_intr_mode
+ .text.gpio_pin_get_intr_mode
+                0x00001724       0xd8 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001724                gpio_pin_get_intr_mode
+ .text.gpio_port_set_intr_mode
+                0x000017fc      0x114 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x000017fc                gpio_port_set_intr_mode
+ .text.gpio_port_get_intr_mode
+                0x00001910       0xd4 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001910                gpio_port_get_intr_mode
+ .text.gpio_pin_get_raw_intr_status
+                0x000019e4       0x30 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x000019e4                gpio_pin_get_raw_intr_status
+ .text.gpio_port_get_raw_intr_status
+                0x00001a14       0x28 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001a14                gpio_port_get_raw_intr_status
+ .text.gpio_pin_get_masked_intr_status
+                0x00001a3c       0x30 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001a3c                gpio_pin_get_masked_intr_status
+ .text.gpio_port_get_masked_intr_status
+                0x00001a6c       0x28 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001a6c                gpio_port_get_masked_intr_status
+ .text.gpio_pin_clear_intr
+                0x00001a94       0x28 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001a94                gpio_pin_clear_intr
+ .text.gpio_port_clear_intr
+                0x00001abc       0x24 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001abc                gpio_port_clear_intr
+ .text.gpio_pin_set_adc_trgr
+                0x00001ae0       0x54 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001ae0                gpio_pin_set_adc_trgr
+ .text.gpio_pin_get_adc_trgr
+                0x00001b34       0x30 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001b34                gpio_pin_get_adc_trgr
+ .text.gpio_port_set_adc_trgr
+                0x00001b64       0x4c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001b64                gpio_port_set_adc_trgr
+ .text.gpio_port_get_adc_trgr
+                0x00001bb0       0x2c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001bb0                gpio_port_get_adc_trgr
+ .text.gpio_pin_set_dma_trgr
+                0x00001bdc       0x54 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001bdc                gpio_pin_set_dma_trgr
+ .text.gpio_pin_get_dma_trgr
+                0x00001c30       0x30 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001c30                gpio_pin_get_dma_trgr
+ .text.gpio_port_set_dma_trgr
+                0x00001c60       0x4c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001c60                gpio_port_set_dma_trgr
+ .text.gpio_port_get_dma_trgr
+                0x00001cac       0x2c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001cac                gpio_port_get_dma_trgr
+ .text.gpio_pin_write
+                0x00001cd8       0x54 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001cd8                gpio_pin_write
+ .text.gpio_pin_read
+                0x00001d2c       0x30 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001d2c                gpio_pin_read
+ .text.gpio_port_write
+                0x00001d5c       0x28 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001d5c                gpio_port_write
+ .text.gpio_port_masked_write
+                0x00001d84       0x2c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001d84                gpio_port_masked_write
+ .text.gpio_port_read
+                0x00001db0       0x28 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001db0                gpio_port_read
+ .text.gpio_field_write
+                0x00001dd8       0x4c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001dd8                gpio_field_write
+ .text.gpio_field_masked_write
+                0x00001e24       0x30 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001e24                gpio_field_masked_write
+ .text.gpio_field_read
+                0x00001e54       0x50 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001e54                gpio_field_read
+ .text.GPIOPinInit
+                0x00001ea4      0x128 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001ea4                GPIOPinInit
+ .text.GPIOPortInit
+                0x00001fcc       0xdc /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x00001fcc                GPIOPortInit
+ .text.GPIOPinWrite
+                0x000020a8       0xd4 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x000020a8                GPIOPinWrite
+ .text.GPIOPortWrite
+                0x0000217c       0xb0 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x0000217c                GPIOPortWrite
+ .text.GPIOPinRead
+                0x0000222c       0xb0 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x0000222c                GPIOPinRead
+ .text.GPIOPortRead
+                0x000022dc       0x8c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                0x000022dc                GPIOPortRead
+ .text.hw_reg32_read
+                0x00002368       0x18 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+ .text.hw_reg32_write
+                0x00002380       0x1c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+ .text.hw_reg32_bit_read
+                0x0000239c       0x30 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+ .text.hw_reg32_bit_set
+                0x000023cc       0x28 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+ .text.hw_reg32_bit_clear
+                0x000023f4       0x2c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+ .text.hw_reg32_bit_write
+                0x00002420       0x44 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+ .text.hw_reg32_field_write
+                0x00002464       0x50 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+ .text.hw_reg32_field_masked_write
+                0x000024b4       0x44 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+ .text.timer_set_clk
+                0x000024f8      0x160 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+                0x000024f8                timer_set_clk
+ .text.timer_set_sleep_clk
+                0x00002658      0x160 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+                0x00002658                timer_set_sleep_clk
+ .text.timer_set_deepsleep_clk
+                0x000027b8      0x160 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+                0x000027b8                timer_set_deepsleep_clk
+ .text.timer_en
+                0x00002918       0x68 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+                0x00002918                timer_en
+ .text.timer_dis
+                0x00002980       0x68 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+                0x00002980                timer_dis
+ .text.timer_reset_config
+                0x000029e8       0xac /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+                0x000029e8                timer_reset_config
+ .text.timer_set_mode
+                0x00002a94      0x10c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+                0x00002a94                timer_set_mode
+ .text.timer_get_mode
+                0x00002ba0       0x20 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+                0x00002ba0                timer_get_mode
+ .text.timer_set_snapshot_mode
+                0x00002bc0       0x6c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+                0x00002bc0                timer_set_snapshot_mode
+ .text.timer_get_snapshot_mode
+                0x00002c2c       0x74 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+                0x00002c2c                timer_get_snapshot_mode
+ .text.timer_set_wait_on_trigger
+                0x00002ca0       0x6c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+                0x00002ca0                timer_set_wait_on_trigger
+ .text.timer_get_wait_on_trigger
+                0x00002d0c       0x74 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+                0x00002d0c                timer_get_wait_on_trigger
+ .text.timer_set_match_intr
+                0x00002d80       0x6c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+                0x00002d80                timer_set_match_intr
+ .text.timer_get_match_intr
+                0x00002dec       0x74 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+                0x00002dec                timer_get_match_intr
+ .text.timer_set_count_dir
+                0x00002e60       0x8c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+                0x00002e60                timer_set_count_dir
+ .text.timer_get_count_dir
+                0x00002eec       0x94 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+                0x00002eec                timer_get_count_dir
+ .text.timer_set_load_val
+                0x00002f80       0xcc /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+                0x00002f80                timer_set_load_val
+ .text.timer_get_load_val
+                0x0000304c       0xf8 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+                0x0000304c                timer_get_load_val
+ .text.timer_set_intr_mask
+                0x00003144       0x24 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+                0x00003144                timer_set_intr_mask
+ .text.timer_get_intr_mask
+                0x00003168       0x28 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+                0x00003168                timer_get_intr_mask
+ .text.timer_get_raw_intr_status
+                0x00003190       0x28 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+                0x00003190                timer_get_raw_intr_status
+ .text.timer_clear_intr
+                0x000031b8       0x24 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+                0x000031b8                timer_clear_intr
+ .text.hw_reg32_read
+                0x000031dc       0x18 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+ .text.hw_reg32_write
+                0x000031f4       0x1c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+ .text.hw_reg32_bit_set
+                0x00003210       0x28 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+ .text.Stuck    0x00003238        0x8 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+ .text.intr_isr_reset
+                0x00003240       0x10 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+ .text.intr_isr_default
+                0x00003250       0x10 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+ .text.intr_isr_gpio_porta
+                0x00003260       0x9c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+ .text.intr_isr_gpio_portb
+                0x000032fc       0xa0 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+ .text.intr_isr_gpio_portc
+                0x0000339c       0xa0 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+ .text.intr_isr_gpio_portd
+                0x0000343c       0xa0 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+ .text.intr_isr_gpio_porte
+                0x000034dc       0xa0 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+ .text.intr_isr_gpio_portf
+                0x0000357c       0xa0 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+ .text.intr_init
+                0x0000361c       0x24 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+                0x0000361c                intr_init
+ .text.intr_set_default_handler
+                0x00003640       0x20 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+                0x00003640                intr_set_default_handler
+ .text.intr_irq_en
+                0x00003660       0xf4 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+                0x00003660                intr_irq_en
+ .text.intr_irq_dis
+                0x00003754       0xf4 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+                0x00003754                intr_irq_dis
+ .text.intr_handler_install
+                0x00003848       0x8c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+                0x00003848                intr_handler_install
+ .text.intr_handler_uninstall
+                0x000038d4       0x90 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+                0x000038d4                intr_handler_uninstall
+ .text.intr_handler_get
+                0x00003964       0x90 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+                0x00003964                intr_handler_get
+ .text.intr_vect_install
+                0x000039f4       0x20 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+                0x000039f4                intr_vect_install
+ .text.intr_vect_uninstall
+                0x00003a14       0x1c /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+                0x00003a14                intr_vect_uninstall
+ .text.intr_master_en
+                0x00003a30       0x14 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+                0x00003a30                intr_master_en
+ .text.intr_master_dis
+                0x00003a44       0x14 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+                0x00003a44                intr_master_dis
+ .text.IntrInit
+                0x00003a58       0x10 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+                0x00003a58                IntrInit
+ .text.GPIOPinAttachIntr
+                0x00003a68      0x1fc /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+                0x00003a68                GPIOPinAttachIntr
+ .text.GPIOPortAttachIntr
+                0x00003c64      0x120 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+                0x00003c64                GPIOPortAttachIntr
+ .text.exit     0x00003d84       0x20 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-exit.o)
+                0x00003d84                exit
  .text.__libc_init_array
-                0x000003ec       0x50 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-init.o)
-                0x000003ec                __libc_init_array
- .text.memset   0x0000043c       0x9c /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-memset.o)
-                0x0000043c                memset
+                0x00003da4       0x50 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-init.o)
+                0x00003da4                __libc_init_array
+ .text.memset   0x00003df4       0x9c /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-memset.o)
+                0x00003df4                memset
  .text.startup.register_fini
-                0x000004d8       0x14 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-__call_atexit.o)
+                0x00003e90       0x14 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-__call_atexit.o)
  .text.__call_exitprocs
-                0x000004ec       0xd4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-__call_atexit.o)
-                0x000004ec                __call_exitprocs
- .text.atexit   0x000005c0        0xc /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-atexit.o)
-                0x000005c0                atexit
+                0x00003ea4       0xd4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-__call_atexit.o)
+                0x00003ea4                __call_exitprocs
+ .text.atexit   0x00003f78        0xc /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-atexit.o)
+                0x00003f78                atexit
  .text.__libc_fini_array
-                0x000005cc       0x2c /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-fini.o)
-                0x000005cc                __libc_fini_array
+                0x00003f84       0x2c /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-fini.o)
+                0x00003f84                __libc_fini_array
  .text.__register_exitproc
-                0x000005f8       0xa4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-__atexit.o)
-                0x000005f8                __register_exitproc
- .text._exit    0x0000069c        0x4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libnosys.a(_exit.o)
-                0x0000069c                _exit
-                0x000006a0                . = ALIGN (0x4)
+                0x00003fb0       0xa4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-__atexit.o)
+                0x00003fb0                __register_exitproc
+ .text._exit    0x00004054        0x4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libnosys.a(_exit.o)
+                0x00004054                _exit
+                0x00004058                . = ALIGN (0x4)
  *(.ctors)
-                0x000006a0                . = ALIGN (0x4)
+                0x00004058                . = ALIGN (0x4)
  *(.dtors)
-                0x000006a0                . = ALIGN (0x4)
-                0x000006a0                __init_array_start = .
+                0x00004058                . = ALIGN (0x4)
+                0x00004058                __init_array_start = .
  *(.init_array*)
- .init_array    0x000006a0        0x4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
+ .init_array    0x00004058        0x4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
  .init_array.00000
-                0x000006a4        0x4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-__call_atexit.o)
-                0x000006a8                __init_array_end = .
+                0x0000405c        0x4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-__call_atexit.o)
+                0x00004060                __init_array_end = .
  *(.init)
- .init          0x000006a8        0x4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crti.o
-                0x000006a8                _init
- .init          0x000006ac        0x8 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtn.o
+ .init          0x00004060        0x4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crti.o
+                0x00004060                _init
+ .init          0x00004064        0x8 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtn.o
  *(.fini*)
- .fini          0x000006b4        0x4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crti.o
-                0x000006b4                _fini
- .fini_array    0x000006b8        0x4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
- .fini          0x000006bc        0x8 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtn.o
-                0x000006c4                PROVIDE (__etext, .)
-                0x000006c4                PROVIDE (_etext, .)
-                0x000006c4                PROVIDE (etext, .)
+ .fini          0x0000406c        0x4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crti.o
+                0x0000406c                _fini
+ .fini_array    0x00004070        0x4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
+ .fini          0x00004074        0x8 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtn.o
+                0x0000407c                PROVIDE (__etext, .)
+                0x0000407c                PROVIDE (_etext, .)
+                0x0000407c                PROVIDE (etext, .)
 
-.glue_7         0x000006c4        0x0
+.glue_7         0x0000407c        0x0
  .glue_7        0x00000000        0x0 linker stubs
 
-.glue_7t        0x000006c4        0x0
+.glue_7t        0x0000407c        0x0
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x000006c4        0x0
+.vfp11_veneer   0x0000407c        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x000006c4        0x0
+.v4_bx          0x0000407c        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x000006c4        0x0
+.iplt           0x0000407c        0x0
  .iplt          0x00000000        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
 
-.rodata         0x000006c4        0x8
+.rodata         0x0000407c        0x8
  *(.rodata)
  *(.rodata*)
  .rodata.str1.4
-                0x000006c4        0x4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-impure.o)
+                0x0000407c        0x4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-impure.o)
                                   0x2 (size before relaxing)
  .rodata._global_impure_ptr
-                0x000006c8        0x4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-impure.o)
-                0x000006c8                _global_impure_ptr
+                0x00004080        0x4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-impure.o)
+                0x00004080                _global_impure_ptr
 
-.eh_frame       0x000006cc        0x4
- .eh_frame      0x000006cc        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
- .eh_frame      0x000006cc        0x4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtend.o
+.eh_frame       0x00004084        0x4
+ .eh_frame      0x00004084        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
+ .eh_frame      0x00004084        0x4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtend.o
 
-.data           0x20000000      0x434 load address 0x000006d0
-                0x000006d0                __data_load__ = LOADADDR (.data)
+.data           0x20000000      0x764 load address 0x00004088
+                0x00004088                __data_load__ = LOADADDR (.data)
                 0x20000000                __data_start__ = .
  *(.data)
  .data          0x20000000        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crti.o
  .data          0x20000000        0x4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
                 0x20000000                __dso_handle
  .data          0x20000004        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/crt0.o
- .data          0x20000004        0x0 ./main.o
  .data          0x20000004        0x0 ./startup_gnu_tm4c123gh6pm.o
+ .data          0x20000004        0x0 ./timer.o
+ .data          0x20000004        0x0 ./timer2.o
+ .data          0x20000004        0x0 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+ .data          0x20000004        0x0 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+ .data          0x20000004        0x0 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
  .data          0x20000004        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-exit.o)
  .data          0x20000004        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-impure.o)
  .data          0x20000004        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-init.o)
@@ -173,74 +534,96 @@ LOAD ./startup_gnu_tm4c123gh6pm.o
  .data          0x20000004        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtend.o
  .data          0x20000004        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtn.o
  *(.data*)
- *fill*         0x20000004        0x4 
+ .data.INTR_ISR_RESET
+                0x20000004        0x4 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+ .data.INTR_ISR_DEFAULT
+                0x20000008        0x4 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+ .data.vector_table
+                0x2000000c      0x268 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+ .data.intr_isr_gpio_porta_vect
+                0x20000274       0x20 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+ .data.intr_isr_gpio_portb_vect
+                0x20000294       0x20 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+ .data.intr_isr_gpio_portc_vect
+                0x200002b4       0x20 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+ .data.intr_isr_gpio_portd_vect
+                0x200002d4       0x20 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+ .data.intr_isr_gpio_porte_vect
+                0x200002f4       0x20 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+ .data.intr_isr_gpio_portf_vect
+                0x20000314       0x20 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+ *fill*         0x20000334        0x4 
  .data.impure_data
-                0x20000008      0x428 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-impure.o)
+                0x20000338      0x428 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-impure.o)
  .data._impure_ptr
-                0x20000430        0x4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-impure.o)
-                0x20000430                _impure_ptr
-                0x20000434                . = ALIGN (0x4)
-                0x20000434                __data_end__ = .
+                0x20000760        0x4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-impure.o)
+                0x20000760                _impure_ptr
+                0x20000764                . = ALIGN (0x4)
+                0x20000764                __data_end__ = .
 
-.jcr            0x20000434        0x4 load address 0x00000b04
- .jcr           0x20000434        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
- .jcr           0x20000434        0x4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtend.o
+.jcr            0x20000764        0x4 load address 0x000047ec
+ .jcr           0x20000764        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
+ .jcr           0x20000764        0x4 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtend.o
 
-.igot.plt       0x20000438        0x0 load address 0x00000b08
+.igot.plt       0x20000768        0x0 load address 0x000047f0
  .igot.plt      0x00000000        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
 
-.ARM.exidx      0x00000b08        0x8
-                0x00000b08                __exidx_start = .
+.ARM.exidx      0x000047f0        0x8
+                0x000047f0                __exidx_start = .
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
- .ARM.exidx     0x00000b08        0x8 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/crt0.o
-                0x00000b10                __exidx_end = .
+ .ARM.exidx     0x000047f0        0x8 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/crt0.o
+                0x000047f8                __exidx_end = .
 
-.ARM.extab      0x00000b10        0x0
+.ARM.extab      0x000047f8        0x0
  *(.ARM.extab* .gnu.linkonce.armextab.*)
- .ARM.extab     0x00000b10        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/crt0.o
+ .ARM.extab     0x000047f8        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/crt0.o
 
-.rel.dyn        0x00000b10        0x0
+.rel.dyn        0x000047f8        0x0
  .rel.iplt      0x00000000        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
 
-.bss            0x20000438      0x21c
-                0x20000438                __bss_start__ = .
+.bss            0x20000768      0x21c
+                0x20000768                __bss_start__ = .
  *(.shbss)
  *(.bss)
- .bss           0x20000438        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crti.o
- .bss           0x20000438       0x1c /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
- .bss           0x20000454        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/crt0.o
- .bss           0x20000454        0x0 ./main.o
- .bss           0x20000454        0x0 ./startup_gnu_tm4c123gh6pm.o
- .bss           0x20000454        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-exit.o)
- .bss           0x20000454        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-impure.o)
- .bss           0x20000454        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-init.o)
- .bss           0x20000454        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-memset.o)
- .bss           0x20000454        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-__call_atexit.o)
- .bss           0x20000454        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-atexit.o)
- .bss           0x20000454        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-fini.o)
- .bss           0x20000454        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-__atexit.o)
- .bss           0x20000454        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libnosys.a(_exit.o)
- .bss           0x20000454        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtend.o
- .bss           0x20000454        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtn.o
+ .bss           0x20000768        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crti.o
+ .bss           0x20000768       0x1c /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
+ .bss           0x20000784        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/crt0.o
+ .bss           0x20000784        0x0 ./startup_gnu_tm4c123gh6pm.o
+ .bss           0x20000784        0x0 ./timer.o
+ .bss           0x20000784        0x0 ./timer2.o
+ .bss           0x20000784        0x0 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+ .bss           0x20000784        0x0 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+ .bss           0x20000784        0x0 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+ .bss           0x20000784        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-exit.o)
+ .bss           0x20000784        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-impure.o)
+ .bss           0x20000784        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-init.o)
+ .bss           0x20000784        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-memset.o)
+ .bss           0x20000784        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-__call_atexit.o)
+ .bss           0x20000784        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-atexit.o)
+ .bss           0x20000784        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-fini.o)
+ .bss           0x20000784        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-__atexit.o)
+ .bss           0x20000784        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libnosys.a(_exit.o)
+ .bss           0x20000784        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtend.o
+ .bss           0x20000784        0x0 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtn.o
  *(.bss.*)
  .bss.pui32Stack
-                0x20000454      0x200 ./startup_gnu_tm4c123gh6pm.o
+                0x20000784      0x200 ./startup_gnu_tm4c123gh6pm.o
  *(COMMON)
-                0x20000654                . = ALIGN (0x4)
-                0x20000654                __bss_end__ = .
+                0x20000984                . = ALIGN (0x4)
+                0x20000984                __bss_end__ = .
 
-.heap           0x20000654        0x0
-                0x20000654                __heap_start__ = .
-                0x20000654                end = __heap_start__
-                0x20000654                _end = end
-                0x20000654                __end = end
+.heap           0x20000984        0x0
+                0x20000984                __heap_start__ = .
+                0x20000984                end = __heap_start__
+                0x20000984                _end = end
+                0x20000984                __end = end
  *(.heap)
-                0x20000654                __heap_end__ = .
-                0x20000654                __HeapLimit = __heap_end__
+                0x20000984                __heap_end__ = .
+                0x20000984                __HeapLimit = __heap_end__
 
-.stack          0x20000658        0x0
-                0x20000658                _stack = .
-                0x20000658                __stack = .
+.stack          0x20000988        0x0
+                0x20000988                _stack = .
+                0x20000988                __stack = .
  *(.stack)
 START GROUP
 LOAD /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a
@@ -268,72 +651,115 @@ OUTPUT(ZeeDK Timer.out elf32-littlearm)
  .ARM.attributes
                 0x00000056       0x20 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/crt0.o
  .ARM.attributes
-                0x00000076       0x39 ./main.o
+                0x00000076       0x39 ./startup_gnu_tm4c123gh6pm.o
  .ARM.attributes
-                0x000000af       0x39 ./startup_gnu_tm4c123gh6pm.o
+                0x000000af       0x39 ./timer.o
  .ARM.attributes
-                0x000000e8       0x34 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-exit.o)
+                0x000000e8       0x39 ./timer2.o
  .ARM.attributes
-                0x0000011c       0x34 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-impure.o)
+                0x00000121       0x39 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
  .ARM.attributes
-                0x00000150       0x34 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-init.o)
+                0x0000015a       0x39 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
  .ARM.attributes
-                0x00000184       0x34 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-memset.o)
+                0x00000193       0x39 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
  .ARM.attributes
-                0x000001b8       0x34 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-__call_atexit.o)
+                0x000001cc       0x34 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-exit.o)
  .ARM.attributes
-                0x000001ec       0x34 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-atexit.o)
+                0x00000200       0x34 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-impure.o)
  .ARM.attributes
-                0x00000220       0x34 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-fini.o)
+                0x00000234       0x34 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-init.o)
  .ARM.attributes
-                0x00000254       0x34 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-__atexit.o)
+                0x00000268       0x34 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-memset.o)
  .ARM.attributes
-                0x00000288       0x34 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libnosys.a(_exit.o)
+                0x0000029c       0x34 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-__call_atexit.o)
  .ARM.attributes
-                0x000002bc       0x34 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtend.o
+                0x000002d0       0x34 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-atexit.o)
  .ARM.attributes
-                0x000002f0       0x22 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtn.o
+                0x00000304       0x34 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-fini.o)
+ .ARM.attributes
+                0x00000338       0x34 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-__atexit.o)
+ .ARM.attributes
+                0x0000036c       0x34 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libnosys.a(_exit.o)
+ .ARM.attributes
+                0x000003a0       0x34 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtend.o
+ .ARM.attributes
+                0x000003d4       0x22 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtn.o
 
 .comment        0x00000000       0x70
- .comment       0x00000000       0x70 ./main.o
+ .comment       0x00000000       0x70 ./startup_gnu_tm4c123gh6pm.o
                                  0x71 (size before relaxing)
- .comment       0x00000000       0x71 ./startup_gnu_tm4c123gh6pm.o
+ .comment       0x00000000       0x71 ./timer.o
+ .comment       0x00000000       0x71 ./timer2.o
+ .comment       0x00000000       0x71 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+ .comment       0x00000000       0x71 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+ .comment       0x00000000       0x71 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
 
-.debug_info     0x00000000      0x1ba
- .debug_info    0x00000000       0x44 ./main.o
- .debug_info    0x00000044      0x176 ./startup_gnu_tm4c123gh6pm.o
+.debug_info     0x00000000     0x363c
+ .debug_info    0x00000000      0x176 ./startup_gnu_tm4c123gh6pm.o
+ .debug_info    0x00000176      0x660 ./timer.o
+ .debug_info    0x000007d6     0x16c8 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+ .debug_info    0x00001e9e      0xb19 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+ .debug_info    0x000029b7      0xc85 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
 
-.debug_abbrev   0x00000000      0x100
- .debug_abbrev  0x00000000       0x36 ./main.o
- .debug_abbrev  0x00000036       0xca ./startup_gnu_tm4c123gh6pm.o
+.debug_abbrev   0x00000000      0x5ad
+ .debug_abbrev  0x00000000       0xca ./startup_gnu_tm4c123gh6pm.o
+ .debug_abbrev  0x000000ca       0xb5 ./timer.o
+ .debug_abbrev  0x0000017f      0x162 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+ .debug_abbrev  0x000002e1      0x146 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+ .debug_abbrev  0x00000427      0x186 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
 
-.debug_aranges  0x00000000       0x58
+.debug_aranges  0x00000000      0x490
  .debug_aranges
-                0x00000000       0x20 ./main.o
+                0x00000000       0x38 ./startup_gnu_tm4c123gh6pm.o
  .debug_aranges
-                0x00000020       0x38 ./startup_gnu_tm4c123gh6pm.o
+                0x00000038       0x30 ./timer.o
+ .debug_aranges
+                0x00000068      0x238 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+ .debug_aranges
+                0x000002a0      0x108 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+ .debug_aranges
+                0x000003a8       0xe8 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
 
-.debug_ranges   0x00000000       0x38
- .debug_ranges  0x00000000       0x10 ./main.o
- .debug_ranges  0x00000010       0x28 ./startup_gnu_tm4c123gh6pm.o
+.debug_ranges   0x00000000      0x440
+ .debug_ranges  0x00000000       0x28 ./startup_gnu_tm4c123gh6pm.o
+ .debug_ranges  0x00000028       0x20 ./timer.o
+ .debug_ranges  0x00000048      0x228 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+ .debug_ranges  0x00000270       0xf8 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+ .debug_ranges  0x00000368       0xd8 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
 
-.debug_line     0x00000000      0x1a1
- .debug_line    0x00000000       0x39 ./main.o
- .debug_line    0x00000039      0x168 ./startup_gnu_tm4c123gh6pm.o
+.debug_line     0x00000000     0x1784
+ .debug_line    0x00000000      0x168 ./startup_gnu_tm4c123gh6pm.o
+ .debug_line    0x00000168      0x36d ./timer.o
+ .debug_line    0x000004d5        0x0 ./timer2.o
+ .debug_line    0x000004d5      0x941 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+ .debug_line    0x00000e16      0x4a1 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+ .debug_line    0x000012b7      0x4cd /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
 
-.debug_str      0x00000000      0x28d
- .debug_str     0x00000000      0x18c ./main.o
- .debug_str     0x0000018c      0x101 ./startup_gnu_tm4c123gh6pm.o
+.debug_str      0x00000000     0x1e48
+ .debug_str     0x00000000      0x27e ./startup_gnu_tm4c123gh6pm.o
                                 0x2bb (size before relaxing)
+ .debug_str     0x0000027e      0xdcf ./timer.o
+                                0xff4 (size before relaxing)
+ .debug_str     0x0000104d        0xc ./timer2.o
+                                0x189 (size before relaxing)
+ .debug_str     0x00001059      0x884 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+                                0xb21 (size before relaxing)
+ .debug_str     0x000018dd      0x266 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+                                0x6d9 (size before relaxing)
+ .debug_str     0x00001b43      0x305 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+                               0x13ae (size before relaxing)
 
-.debug_frame    0x00000000      0x22c
- .debug_frame   0x00000000       0x30 ./main.o
- .debug_frame   0x00000030       0x7c ./startup_gnu_tm4c123gh6pm.o
- .debug_frame   0x000000ac       0x28 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-exit.o)
- .debug_frame   0x000000d4       0x2c /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-init.o)
- .debug_frame   0x00000100       0x34 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-memset.o)
- .debug_frame   0x00000134       0x50 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-__call_atexit.o)
- .debug_frame   0x00000184       0x20 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-atexit.o)
- .debug_frame   0x000001a4       0x34 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-fini.o)
- .debug_frame   0x000001d8       0x34 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-__atexit.o)
- .debug_frame   0x0000020c       0x20 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libnosys.a(_exit.o)
+.debug_frame    0x00000000     0x1448
+ .debug_frame   0x00000000       0x7c ./startup_gnu_tm4c123gh6pm.o
+ .debug_frame   0x0000007c       0x78 ./timer.o
+ .debug_frame   0x000000f4      0x9c8 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(gpio.o)
+ .debug_frame   0x00000abc      0x474 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(timer.o)
+ .debug_frame   0x00000f30      0x398 /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a(interrupt.o)
+ .debug_frame   0x000012c8       0x28 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-exit.o)
+ .debug_frame   0x000012f0       0x2c /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-init.o)
+ .debug_frame   0x0000131c       0x34 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-memset.o)
+ .debug_frame   0x00001350       0x50 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-__call_atexit.o)
+ .debug_frame   0x000013a0       0x20 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-atexit.o)
+ .debug_frame   0x000013c0       0x34 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-fini.o)
+ .debug_frame   0x000013f4       0x34 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libg.a(lib_a-__atexit.o)
+ .debug_frame   0x00001428       0x20 /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libnosys.a(_exit.o)
