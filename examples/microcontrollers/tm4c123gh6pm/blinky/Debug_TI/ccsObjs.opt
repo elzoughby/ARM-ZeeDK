@@ -1,1 +1,1 @@
-"./blinky.obj" "./blinky2.obj" "./startup_gnu_tm4c123gh6pm.obj" "./startup_ti_tm4c123gh6pm.obj" "../tm4c123gh6pm.cmd" -llibc.a -l"/media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_TI/ZeeDK Lib.lib" 
+"./blinky.obj" "./blinky2.obj" "./startup_gnu_tm4c123gh6pm.obj" "./startup_ti_tm4c123gh6pm.obj" "../tm4c123gh6pm.cmd" -llibc.a -l"/media/ahmed/Data/Workshop/Embedded/Microcontroller/ARM/ccs/ZeeDK/lib/Debug_TI/ZeeDK Lib.lib" 

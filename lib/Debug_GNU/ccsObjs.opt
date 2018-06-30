@@ -1,1 +1,1 @@
-"./HAL/gpio.o" "./HAL/timer.o" "./SERVICE/interrupt.o" 
+"./HAL/gpio.o" "./HAL/timer.o" "./HAL/uart.o" "./SERVICE/interrupt.o" 

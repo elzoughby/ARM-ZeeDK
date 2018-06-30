@@ -1,5 +1,5 @@
 /***********************************************************************
-* Timer operations for ARM Microcontrollers GPIO Driver                *
+* Timer operations for ARM Microcontrollers Timer Driver               *
 * @author Ahmed Elzoughby                                              *
 * @date August 8, 2017                                                 *
 * Purpose: Provide an easy interface to deal with Timers               *
@@ -141,7 +141,7 @@ timer_error_t timer_set_deepsleep_clk(timer_base_t base, bit_t state)
     return result;
 }
 
-timer_error_t timer_en(timer_base_t base, timer_unit_t unit)
+timer_error_t timer_enable(timer_base_t base, timer_unit_t unit)
 {
     timer_error_t result = TIMER_STATE_SUCCESS;
 
@@ -166,7 +166,7 @@ timer_error_t timer_en(timer_base_t base, timer_unit_t unit)
     return result;
 }
 
-timer_error_t timer_dis(timer_base_t base, timer_unit_t unit)
+timer_error_t timer_disable(timer_base_t base, timer_unit_t unit)
 {
     timer_error_t result = TIMER_STATE_SUCCESS;
 

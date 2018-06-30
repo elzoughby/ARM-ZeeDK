@@ -1,1 +1,1 @@
-"./startup_gnu_tm4c123gh6pm.o" "./timer.o" "./timer2.o" -Wl,-T"../tm4c123gh6pm.lds" -Wl,--start-group -l:"/media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a" -Wl,--end-group 
+"./startup_gnu_tm4c123gh6pm.o" "./timer.o" "./timer2.o" -Wl,-T"../tm4c123gh6pm.lds" -Wl,--start-group -l:"/media/ahmed/Data/Workshop/Embedded/Microcontroller/ARM/ccs/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a" -Wl,--end-group 

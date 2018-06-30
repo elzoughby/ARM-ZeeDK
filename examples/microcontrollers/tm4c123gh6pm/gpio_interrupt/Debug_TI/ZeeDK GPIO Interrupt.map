@@ -1,32 +1,32 @@
 ******************************************************************************
-                  TI ARM Linker Unix v16.9.1                   
+                  TI ARM Linker Unix v18.1.1                   
 ******************************************************************************
->> Linked Wed Sep 27 22:18:46 2017
+>> Linked Thu Jun 21 22:24:31 2018
 
 OUTPUT FILE NAME:   <ZeeDK GPIO Interrupt.out>
-ENTRY POINT SYMBOL: "_c_int00"  address: 00002ba5
+ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 00002b79
 
 
 MEMORY CONFIGURATION
 
          name            origin    length      used     unused   attr    fill
 ----------------------  --------  ---------  --------  --------  ----  --------
-  FLASH                 00000000   00040000  00002d62  0003d29e  R  X
-  SRAM                  20000000   00008000  00000578  00007a88  RW X
+  FLASH                 00000000   00040000  00002c4a  0003d3b6  R  X
+  SRAM                  20000000   00008000  00000560  00007aa0  RW X
 
 
 SEGMENT ALLOCATION MAP
 
 run origin  load origin   length   init length attrs members
 ----------  ----------- ---------- ----------- ----- -------
-00000000    00000000    00002d64   00002d64    r-x
+00000000    00000000    00002c50   00002c50    r-x
   00000000    00000000    0000026c   0000026c    r-- .intvecs
-  0000026c    0000026c    00002a7a   00002a7a    r-x .text
-  00002ce8    00002ce8    00000010   00000010    r-- .const
-  00002cf8    00002cf8    0000006c   0000006c    r-- .cinit
-20000000    20000000    00000578   00000000    rw-
-  20000000    20000000    00000378   00000000    rw- .data
-  20000378    20000378    00000200   00000000    rw- .stack
+  0000026c    0000026c    00002966   00002966    r-x .text
+  00002bd4    00002bd4    00000010   00000010    r-- .const
+  00002be8    00002be8    00000068   00000068    r-- .cinit
+20000000    20000000    00000560   00000000    rw-
+  20000000    20000000    00000360   00000000    rw- .data
+  20000360    20000360    00000200   00000000    rw- .stack
 
 
 SECTION ALLOCATION MAP
@@ -37,37 +37,33 @@ section   page    origin      length       input sections
 .intvecs   0    00000000    0000026c     
                   00000000    0000026c     startup_ti_tm4c123gh6pm.obj (.intvecs)
 
-.text      0    0000026c    00002a7a     
+.text      0    0000026c    00002966     
                   0000026c    00001af0     ZeeDK Lib.lib : gpio.obj (.text)
                   00001d5c    00000bb8                   : interrupt.obj (.text)
                   00002914    0000011c     gpio_interrupt2.obj (.text)
-                  00002a30    0000009c     rtsv7M4_T_le_v4SPD16_eabi.lib : memcpy_t2.obj (.text)
-                  00002acc    00000070                                   : autoinit.obj (.text)
-                  00002b3c    00000068                                   : copy_decompress_lzss.obj (.text:decompress:lzss)
-                  00002ba4    00000054                                   : boot.obj (.text)
-                  00002bf8    00000054                                   : exit.obj (.text)
-                  00002c4c    0000004c                                   : cpy_tbl.obj (.text)
-                  00002c98    00000018                                   : args_main.obj (.text)
-                  00002cb0    00000014                                   : _lock.obj (.text)
-                  00002cc4    0000000e                                   : copy_decompress_none.obj (.text:decompress:none)
-                  00002cd2    0000000c     startup_ti_tm4c123gh6pm.obj (.text)
-                  00002cde    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : pre_init.obj (.text)
-                  00002ce2    00000002                                   : mpu_init.obj (.text)
-                  00002ce4    00000002                                   : startup.obj (.text)
+                  00002a30    0000009c     rtsv7M4_T_le_v4SPD16_eabi.lib : memcpy_t2.asm.obj (.text)
+                  00002acc    00000068                                   : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
+                  00002b34    00000044                                   : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit:__TI_auto_init_nobinit_nopinit)
+                  00002b78    00000038                                   : boot_cortex_m.c.obj (.text:_c_int00_noargs:_c_int00_noargs)
+                  00002bb0    0000000e                                   : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
+                  00002bbe    0000000c     startup_ti_tm4c123gh6pm.obj (.text)
+                  00002bca    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : pre_init.c.obj (.text:_system_pre_init)
+                  00002bce    00000004                                   : exit.c.obj (.text:abort:abort)
 
-.const     0    00002ce8    00000010     
-                  00002ce8    00000008     gpio_interrupt2.obj (.const:$P$T0$1)
-                  00002cf0    00000008     gpio_interrupt2.obj (.const:$P$T1$2)
+.const     0    00002bd4    00000010     
+                  00002bd4    00000008     gpio_interrupt2.obj (.const:$P$T0$1)
+                  00002bdc    00000008     gpio_interrupt2.obj (.const:$P$T1$2)
 
-.cinit     0    00002cf8    0000006c     
-                  00002cf8    0000005c     (.cinit..data.load) [load image, compression = lzss]
-                  00002d54    00000008     (__TI_handler_table)
-                  00002d5c    00000008     (__TI_cinit_table)
+.cinit     0    00002be8    00000068     
+                  00002be8    00000056     (.cinit..data.load) [load image, compression = lzss]
+                  00002c3e    00000002     --HOLE-- [fill = 0]
+                  00002c40    00000008     (__TI_handler_table)
+                  00002c48    00000008     (__TI_cinit_table)
 
 .init_array 
 *          0    00000000    00000000     UNINITIALIZED
 
-.data      0    20000000    00000378     UNINITIALIZED
+.data      0    20000000    00000360     UNINITIALIZED
                   20000000    00000268     ZeeDK Lib.lib : interrupt.obj (.data:vector_table)
                   20000268    00000020                   : interrupt.obj (.data:intr_isr_gpio_porta_vect)
                   20000288    00000020                   : interrupt.obj (.data:intr_isr_gpio_portb_vect)
@@ -75,17 +71,15 @@ section   page    origin      length       input sections
                   200002c8    00000020                   : interrupt.obj (.data:intr_isr_gpio_portd_vect)
                   200002e8    00000020                   : interrupt.obj (.data:intr_isr_gpio_porte_vect)
                   20000308    00000020                   : interrupt.obj (.data:intr_isr_gpio_portf_vect)
-                  20000328    0000000c     rtsv7M4_T_le_v4SPD16_eabi.lib : exit.obj (.data:$O1$$)
-                  20000334    0000000c     gpio_interrupt2.obj (.data:greenLed)
-                  20000340    0000000c     gpio_interrupt2.obj (.data:redLed)
-                  2000034c    0000000c     gpio_interrupt2.obj (.data:switch1)
-                  20000358    0000000c     gpio_interrupt2.obj (.data:switch2)
-                  20000364    00000008     rtsv7M4_T_le_v4SPD16_eabi.lib : _lock.obj (.data:$O1$$)
-                  2000036c    00000008     ZeeDK Lib.lib : interrupt.obj (.data)
-                  20000374    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : stkdepth_vars.obj (.data)
+                  20000328    0000000c     gpio_interrupt2.obj (.data:greenLed)
+                  20000334    0000000c     gpio_interrupt2.obj (.data:redLed)
+                  20000340    0000000c     gpio_interrupt2.obj (.data:switch1)
+                  2000034c    0000000c     gpio_interrupt2.obj (.data:switch2)
+                  20000358    00000008     ZeeDK Lib.lib : interrupt.obj (.data)
 
-.stack     0    20000378    00000200     UNINITIALIZED
-                  20000378    00000200     --HOLE--
+.stack     0    20000360    00000200     UNINITIALIZED
+                  20000360    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.stack)
+                  20000364    000001fc     --HOLE--
 
 MODULE SUMMARY
 
@@ -97,44 +91,38 @@ MODULE SUMMARY
     +--+-----------------------------+-------+---------+---------+
        Total:                        296     636       48     
                                                               
-    /home/ahmed/.ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/lib/rtsv7M4_T_le_v4SPD16_eabi.lib
-       memcpy_t2.obj                 156     0         0      
-       autoinit.obj                  112     0         0      
-       copy_decompress_lzss.obj      104     0         0      
-       exit.obj                      84      0         12     
-       boot.obj                      84      0         0      
-       cpy_tbl.obj                   76      0         0      
-       _lock.obj                     20      0         8      
-       args_main.obj                 24      0         0      
-       copy_decompress_none.obj      14      0         0      
-       pre_init.obj                  4       0         0      
-       stkdepth_vars.obj             0       0         4      
-       mpu_init.obj                  2       0         0      
-       startup.obj                   2       0         0      
+    /home/ahmed/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/lib/rtsv7M4_T_le_v4SPD16_eabi.lib
+       memcpy_t2.asm.obj             156     0         0      
+       copy_decompress_lzss.c.obj    104     0         0      
+       autoinit.c.obj                68      0         0      
+       boot_cortex_m.c.obj           56      0         0      
+       copy_decompress_none.c.obj    14      0         0      
+       exit.c.obj                    4       0         0      
+       pre_init.c.obj                4       0         0      
     +--+-----------------------------+-------+---------+---------+
-       Total:                        682     0         24     
+       Total:                        406     0         0      
                                                               
-    /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_TI/ZeeDK Lib.lib
+    /media/ahmed/Data/Workshop/Embedded/Microcontroller/ARM/ccs/ZeeDK/lib/Debug_TI/ZeeDK Lib.lib
        gpio.obj                      6896    0         0      
        interrupt.obj                 3000    0         816    
     +--+-----------------------------+-------+---------+---------+
        Total:                        9896    0         816    
                                                               
        Stack:                        0       0         512    
-       Linker Generated:             0       108       0      
+       Linker Generated:             0       102       0      
     +--+-----------------------------+-------+---------+---------+
-       Grand Total:                  10874   744       1400   
+       Grand Total:                  10598   738       1376   
 
 
 LINKER GENERATED COPY TABLES
 
-__TI_cinit_table @ 00002d5c records: 1, size/record: 8, table size: 8
-	.data: load addr=00002cf8, load size=0000005c bytes, run addr=20000000, run size=00000378 bytes, compression=lzss
+__TI_cinit_table @ 00002c48 records: 1, size/record: 8, table size: 8
+	.data: load addr=00002be8, load size=00000056 bytes, run addr=20000000, run size=00000360 bytes, compression=lzss
 
 
 LINKER GENERATED HANDLER TABLE
 
-__TI_handler_table @ 00002d54 records: 2, size/record: 4, table size: 8
+__TI_handler_table @ 00002c40 records: 2, size/record: 4, table size: 8
 	index: 0, handler: __TI_decompress_lzss
 	index: 1, handler: __TI_decompress_none
 
@@ -143,7 +131,7 @@ GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name
 
 address   name                            
 -------   ----                            
-00002bf9  C$$EXIT                         
+00002bcf  C$$EXIT                         
 000025f9  GPIOPinAttachIntr               
 0000193d  GPIOPinInit                     
 00001c41  GPIOPinRead                     
@@ -155,22 +143,17 @@ address   name
 00002963  Handle1                         
 000029b5  Handle2                         
 000025d5  IntrInit                        
-00002cd3  ResetISR                        
-UNDEFED   SHT$$INIT_ARRAY$$Base           
-UNDEFED   SHT$$INIT_ARRAY$$Limit          
-20000578  __STACK_END                     
+00002bbf  ResetISR                        
+20000560  __STACK_END                     
 00000200  __STACK_SIZE                    
-20000578  __STACK_TOP                     
-00002d5c  __TI_CINIT_Base                 
-00002d64  __TI_CINIT_Limit                
-00002d54  __TI_Handler_Table_Base         
-00002d5c  __TI_Handler_Table_Limit        
-00002acd  __TI_auto_init                  
-20000328  __TI_cleanup_ptr                
-00002b3d  __TI_decompress_lzss            
-00002cc5  __TI_decompress_none            
-2000032c  __TI_dtors_ptr                  
-20000330  __TI_enable_exit_profile_output 
+20000560  __STACK_TOP                     
+00002c48  __TI_CINIT_Base                 
+00002c50  __TI_CINIT_Limit                
+00002c40  __TI_Handler_Table_Base         
+00002c48  __TI_Handler_Table_Limit        
+00002b35  __TI_auto_init_nobinit_nopinit  
+00002acd  __TI_decompress_lzss            
+00002bb1  __TI_decompress_none            
 ffffffff  __TI_pprof_out_hndl             
 ffffffff  __TI_prof_data_size             
 ffffffff  __TI_prof_data_start            
@@ -180,21 +163,13 @@ ffffffff  __TI_prof_data_start
 00002a31  __aeabi_memcpy8                 
 ffffffff  __binit__                       
 ffffffff  __c_args__                      
-00002ce3  __mpu_init                      
-20000378  __stack                         
-00002c99  _args_main                      
-00002ba5  _c_int00                        
-20000364  _lock                           
-00002cbf  _nop                            
-00002cb7  _register_lock                  
-00002cb1  _register_unlock                
-00002ce5  _system_post_cinit              
-00002cdf  _system_pre_init                
-20000368  _unlock                         
-00002bfd  abort                           
+UNDEFED   __mpu_init                      
+20000360  __stack                         
+00002b79  _c_int00_noargs                 
+UNDEFED   _system_post_cinit              
+00002bcb  _system_pre_init                
+00002bcf  abort                           
 ffffffff  binit                           
-00002c4d  copy_in                         
-00002c05  exit                            
 00000000  g_pfnVectors                    
 000018cd  gpio_field_masked_write         
 000018f5  gpio_field_read                 
@@ -249,24 +224,23 @@ ffffffff  binit
 00000475  gpio_port_set_sleep_clk         
 00001097  gpio_port_unlock                
 00001833  gpio_port_write                 
-20000334  greenLed                        
+20000328  greenLed                        
 00002505  intr_handler_get                
 000023a9  intr_handler_install            
 00002459  intr_handler_uninstall          
 0000209b  intr_init                       
-00002299  intr_irq_dis                    
-00002131  intr_irq_en                     
-000025cf  intr_master_dis                 
-000025c9  intr_master_en                  
+00002299  intr_irq_disable                
+00002131  intr_irq_enable                 
+000025cf  intr_master_disable             
+000025c9  intr_master_enable              
 000020b9  intr_set_default_handler        
 000025ab  intr_vect_install               
 000025bb  intr_vect_uninstall             
 00002915  main                            
-20000374  main_func_sp                    
 00002a31  memcpy                          
-20000340  redLed                          
-2000034c  switch1                         
-20000358  switch2                         
+20000334  redLed                          
+20000340  switch1                         
+2000034c  switch2                         
 
 
 GLOBAL SYMBOLS: SORTED BY Symbol Address 
@@ -337,15 +311,15 @@ address   name
 00001cd5  GPIOPortRead                    
 0000209b  intr_init                       
 000020b9  intr_set_default_handler        
-00002131  intr_irq_en                     
-00002299  intr_irq_dis                    
+00002131  intr_irq_enable                 
+00002299  intr_irq_disable                
 000023a9  intr_handler_install            
 00002459  intr_handler_uninstall          
 00002505  intr_handler_get                
 000025ab  intr_vect_install               
 000025bb  intr_vect_uninstall             
-000025c9  intr_master_en                  
-000025cf  intr_master_dis                 
+000025c9  intr_master_enable              
+000025cf  intr_master_disable             
 000025d5  IntrInit                        
 000025f9  GPIOPinAttachIntr               
 000027bd  GPIOPortAttachIntr              
@@ -356,46 +330,32 @@ address   name
 00002a31  __aeabi_memcpy4                 
 00002a31  __aeabi_memcpy8                 
 00002a31  memcpy                          
-00002acd  __TI_auto_init                  
-00002b3d  __TI_decompress_lzss            
-00002ba5  _c_int00                        
-00002bf9  C$$EXIT                         
-00002bfd  abort                           
-00002c05  exit                            
-00002c4d  copy_in                         
-00002c99  _args_main                      
-00002cb1  _register_unlock                
-00002cb7  _register_lock                  
-00002cbf  _nop                            
-00002cc5  __TI_decompress_none            
-00002cd3  ResetISR                        
-00002cdf  _system_pre_init                
-00002ce3  __mpu_init                      
-00002ce5  _system_post_cinit              
-00002d54  __TI_Handler_Table_Base         
-00002d5c  __TI_CINIT_Base                 
-00002d5c  __TI_Handler_Table_Limit        
-00002d64  __TI_CINIT_Limit                
-20000328  __TI_cleanup_ptr                
-2000032c  __TI_dtors_ptr                  
-20000330  __TI_enable_exit_profile_output 
-20000334  greenLed                        
-20000340  redLed                          
-2000034c  switch1                         
-20000358  switch2                         
-20000364  _lock                           
-20000368  _unlock                         
-20000374  main_func_sp                    
-20000378  __stack                         
-20000578  __STACK_END                     
-20000578  __STACK_TOP                     
+00002acd  __TI_decompress_lzss            
+00002b35  __TI_auto_init_nobinit_nopinit  
+00002b79  _c_int00_noargs                 
+00002bb1  __TI_decompress_none            
+00002bbf  ResetISR                        
+00002bcb  _system_pre_init                
+00002bcf  C$$EXIT                         
+00002bcf  abort                           
+00002c40  __TI_Handler_Table_Base         
+00002c48  __TI_CINIT_Base                 
+00002c48  __TI_Handler_Table_Limit        
+00002c50  __TI_CINIT_Limit                
+20000328  greenLed                        
+20000334  redLed                          
+20000340  switch1                         
+2000034c  switch2                         
+20000360  __stack                         
+20000560  __STACK_END                     
+20000560  __STACK_TOP                     
 ffffffff  __TI_pprof_out_hndl             
 ffffffff  __TI_prof_data_size             
 ffffffff  __TI_prof_data_start            
 ffffffff  __binit__                       
 ffffffff  __c_args__                      
 ffffffff  binit                           
-UNDEFED   SHT$$INIT_ARRAY$$Base           
-UNDEFED   SHT$$INIT_ARRAY$$Limit          
+UNDEFED   __mpu_init                      
+UNDEFED   _system_post_cinit              
 
-[124 symbols]
+[110 symbols]

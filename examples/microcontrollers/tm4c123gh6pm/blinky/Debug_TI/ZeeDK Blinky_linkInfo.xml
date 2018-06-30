@@ -2,7 +2,7 @@
 <link_info>
    <banner>TI ARM Linker Unix v16.9.1.LTS</banner>
    <copyright>Copyright (c) 1996-2015 Texas Instruments Incorporated</copyright>
-   <link_time>0x59c6d669</link_time>
+   <link_time>0x59d3c962</link_time>
    <link_errors>0x0</link_errors>
    <output_file>ZeeDK Blinky.out</output_file>
    <entry_point>
@@ -373,7 +373,7 @@
          <size>0x2cd</size>
          <input_file_ref idref="fl-5"/>
       </object_component>
-      <object_component id="oc-25">
+      <object_component id="oc-27">
          <name>.debug_info</name>
          <load_address>0xf91</load_address>
          <run_address>0xf91</run_address>
@@ -687,7 +687,7 @@
          <size>0xa0</size>
          <input_file_ref idref="fl-5"/>
       </object_component>
-      <object_component id="oc-28">
+      <object_component id="oc-25">
          <name>.debug_line</name>
          <load_address>0x40e</load_address>
          <run_address>0x40e</run_address>
@@ -701,7 +701,7 @@
          <size>0x20</size>
          <input_file_ref idref="fl-c1"/>
       </object_component>
-      <object_component id="oc-13">
+      <object_component id="oc-14">
          <name>.debug_line</name>
          <load_address>0x481</load_address>
          <run_address>0x481</run_address>
@@ -939,7 +939,7 @@
          <size>0x84</size>
          <input_file_ref idref="fl-5"/>
       </object_component>
-      <object_component id="oc-14">
+      <object_component id="oc-13">
          <name>.debug_frame</name>
          <load_address>0xe0</load_address>
          <run_address>0xe0</run_address>
@@ -1561,7 +1561,7 @@
          <size>0x4c</size>
          <input_file_ref idref="fl-5"/>
       </object_component>
-      <object_component id="oc-27">
+      <object_component id="oc-28">
          <name>.debug_pubnames</name>
          <load_address>0xa7</load_address>
          <run_address>0xa7</run_address>
@@ -1922,7 +1922,7 @@
             <object_component_ref idref="oc-33"/>
             <object_component_ref idref="oc-10"/>
             <object_component_ref idref="oc-2c"/>
-            <object_component_ref idref="oc-25"/>
+            <object_component_ref idref="oc-27"/>
             <object_component_ref idref="oc-86"/>
             <object_component_ref idref="oc-15"/>
             <object_component_ref idref="oc-35"/>
@@ -1975,9 +1975,9 @@
             <object_component_ref idref="oc-7b"/>
             <object_component_ref idref="oc-32"/>
             <object_component_ref idref="oc-2f"/>
-            <object_component_ref idref="oc-28"/>
+            <object_component_ref idref="oc-25"/>
             <object_component_ref idref="oc-bb"/>
-            <object_component_ref idref="oc-13"/>
+            <object_component_ref idref="oc-14"/>
             <object_component_ref idref="oc-38"/>
             <object_component_ref idref="oc-84"/>
             <object_component_ref idref="oc-8e"/>
@@ -2019,7 +2019,7 @@
          <contents>
             <object_component_ref idref="oc-ac"/>
             <object_component_ref idref="oc-30"/>
-            <object_component_ref idref="oc-14"/>
+            <object_component_ref idref="oc-13"/>
             <object_component_ref idref="oc-1d"/>
             <object_component_ref idref="oc-74"/>
             <object_component_ref idref="oc-5c"/>
@@ -2140,7 +2140,7 @@
             <object_component_ref idref="oc-aa"/>
             <object_component_ref idref="oc-11"/>
             <object_component_ref idref="oc-2e"/>
-            <object_component_ref idref="oc-27"/>
+            <object_component_ref idref="oc-28"/>
             <object_component_ref idref="oc-17"/>
             <object_component_ref idref="oc-1b"/>
             <object_component_ref idref="oc-b1"/>

@@ -2,7 +2,7 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-CG_TOOL_ROOT := /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3
+CG_TOOL_ROOT := /home/ahmed/ti/ccsv8/tools/compiler/gcc-arm-none-eabi-7-2017-q4-major
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
@@ -10,6 +10,7 @@ GEN_CMDS__FLAG :=
 ORDERED_OBJS += \
 "./HAL/gpio.o" \
 "./HAL/timer.o" \
+"./HAL/uart.o" \
 "./SERVICE/interrupt.o" \
 
 -include ../makefile.init
@@ -131,18 +132,18 @@ all: libZeeDK\ Lib.a
 # Tool invocations
 libZeeDK\ Lib.a: $(OBJS) $(OBJ_SRCS) $(LIB_SRCS)
 ifneq ($(strip $(ORDERED_OBJS)),)
-	@echo 'Building target: $@'
+	@echo 'Building target: "$@"'
 	@echo 'Invoking: GNU Librarian'
-	"/home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/arm-none-eabi-ar" -r "libZeeDK Lib.a" $(ORDERED_OBJS)
-	@echo 'Finished building target: $@'
+	"/home/ahmed/ti/ccsv8/tools/compiler/gcc-arm-none-eabi-7-2017-q4-major/bin/arm-none-eabi-ar" -r "libZeeDK Lib.a" $(ORDERED_OBJS)
+	@echo 'Finished building target: "$@"'
 	@echo ' '
 endif
 
 # Other Targets
 clean:
 	-$(RM) $(LIB_OUTPUTS__QUOTED)
-	-$(RM) "HAL/gpio.o" "HAL/timer.o" "SERVICE/interrupt.o" 
-	-$(RM) "HAL/gpio.d" "HAL/timer.d" "SERVICE/interrupt.d" 
+	-$(RM) "HAL/gpio.o" "HAL/timer.o" "HAL/uart.o" "SERVICE/interrupt.o" 
+	-$(RM) "HAL/gpio.d" "HAL/timer.d" "HAL/uart.d" "SERVICE/interrupt.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

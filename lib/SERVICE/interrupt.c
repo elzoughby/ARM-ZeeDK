@@ -511,7 +511,7 @@ intr_error_t intr_set_default_handler(fptr_t handler)
     return INTR_STATE_SUCCESS;
 }
 
-intr_error_t intr_irq_en(intr_irq_t irq)
+intr_error_t intr_irq_enable(intr_irq_t irq)
 {
     intr_error_t result = INTR_STATE_SUCCESS;
 
@@ -538,7 +538,7 @@ intr_error_t intr_irq_en(intr_irq_t irq)
     return result;
 }
 
-intr_error_t intr_irq_dis(intr_irq_t irq)
+intr_error_t intr_irq_disable(intr_irq_t irq)
 {
     intr_error_t result = INTR_STATE_SUCCESS;
 
@@ -619,13 +619,13 @@ intr_error_t intr_vect_uninstall()
     return INTR_STATE_SUCCESS;
 }
 
-intr_error_t intr_master_en()
+intr_error_t intr_master_enable()
 {
     __asm("    CPSIE I \n");
     return INTR_STATE_SUCCESS;
 }
 
-intr_error_t intr_master_dis()
+intr_error_t intr_master_disable()
 {
     __asm("    CPSID I \n");
     return INTR_STATE_SUCCESS;
@@ -688,7 +688,7 @@ intrError_t GPIOPinAttachIntr(gpioPin_t* pinObj, gpioIntr_t* intrObj)
 
     if (gpioResult == GPIO_STATE_SUCCESS && result == INTR_STATE_SUCCESS)
     {
-        result = intr_irq_dis(theIRQ);
+        result = intr_irq_disable(theIRQ);
         if (result == INTR_STATE_SUCCESS)
         {
             gpioResult = gpio_pin_set_intr(pinObj->base,
@@ -700,10 +700,10 @@ intrError_t GPIOPinAttachIntr(gpioPin_t* pinObj, gpioIntr_t* intrObj)
                                                      intrObj->mode);
                 if (gpioResult == GPIO_STATE_SUCCESS)
                 {
-                    result = intr_irq_en(theIRQ);
+                    result = intr_irq_enable(theIRQ);
                     if (result == INTR_STATE_SUCCESS)
                     {
-                        result = intr_master_en();
+                        result = intr_master_enable();
                     }
                 }
                 else
@@ -748,7 +748,7 @@ intrError_t GPIOPortAttachIntr(gpioPort_t* portObj, gpioIntr_t* intrObj)
 
     if (gpioResult == GPIO_STATE_SUCCESS)
     {
-        result = intr_irq_dis(theIRQ);
+        result = intr_irq_disable(theIRQ);
         if (result == INTR_STATE_SUCCESS)
         {
             gpioResult = gpio_port_set_intr(portObj->base, ON);
@@ -761,10 +761,10 @@ intrError_t GPIOPortAttachIntr(gpioPort_t* portObj, gpioIntr_t* intrObj)
                     result = intr_handler_install(theIRQ, intrObj->handler);
                     if (result == INTR_STATE_SUCCESS)
                     {
-                        result = intr_irq_en(theIRQ);
+                        result = intr_irq_enable(theIRQ);
                         if (result == INTR_STATE_SUCCESS)
                         {
-                            result = intr_master_en();
+                            result = intr_master_enable();
                         }
                     }
                 }

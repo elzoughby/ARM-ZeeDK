@@ -225,9 +225,9 @@ intr_error_t intr_init();
 
 intr_error_t intr_set_default_handler(fptr_t handler);
 
-intr_error_t intr_irq_en(intr_irq_t irq);
+intr_error_t intr_irq_enable(intr_irq_t irq);
 
-intr_error_t intr_irq_dis(intr_irq_t irq);
+intr_error_t intr_irq_disable(intr_irq_t irq);
 
 intr_error_t intr_handler_install(intr_irq_t irq, fptr_t handler);
 
@@ -239,9 +239,9 @@ intr_error_t intr_vect_install(volatile fptr_t (*new_vect)[154]);
 
 intr_error_t intr_vect_uninstall();
 
-intr_error_t intr_master_en();
+intr_error_t intr_master_enable();
 
-intr_error_t intr_master_dis();
+intr_error_t intr_master_disable();
 
 #ifdef EASY_MODE
 

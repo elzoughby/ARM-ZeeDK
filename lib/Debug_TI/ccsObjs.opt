@@ -1,1 +1,1 @@
-"./HAL/gpio.obj" "./HAL/timer.obj" "./SERVICE/interrupt.obj" 
+"./HAL/gpio.obj" "./HAL/ssi.obj" "./HAL/timer.obj" "./HAL/uart.obj" "./SERVICE/interrupt.obj" 

@@ -4,5 +4,5 @@
 
 USER_OBJS :=
 
-LIBS := -l:"/media/ahmed/Data/Workshop/Embedded\ Systems/Microcontroller/ARM\ Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK\ Lib.a"
+LIBS := -l:"/media/ahmed/Data/Workshop/Embedded/Microcontroller/ARM/ccs/ZeeDK/lib/Debug_GNU/libZeeDK\ Lib.a"
 

@@ -1,7 +1,7 @@
 ******************************************************************************
                   TI ARM Linker Unix v16.9.1                   
 ******************************************************************************
->> Linked Sat Sep 23 23:47:21 2017
+>> Linked Tue Oct  3 19:31:14 2017
 
 OUTPUT FILE NAME:   <ZeeDK Blinky.out>
 ENTRY POINT SYMBOL: "_c_int00"  address: 00001ed1

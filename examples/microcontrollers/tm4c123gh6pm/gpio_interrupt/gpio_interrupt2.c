@@ -62,10 +62,10 @@ int main(void)
 
 void Handle1(void)
 {
-    intr_irq_dis(INTR_IRQ_GPIO_PORTF);
+    intr_irq_disable(INTR_IRQ_GPIO_PORTF);
     int i;
     for(i = 0; i < 250000; i++);
-    intr_irq_en(INTR_IRQ_GPIO_PORTF);
+    intr_irq_enable(INTR_IRQ_GPIO_PORTF);
 
     bit_t tmp;
     GPIOPinRead(&greenLed, &tmp);
@@ -80,10 +80,10 @@ void Handle1(void)
 
 void Handle2(void)
 {
-    intr_irq_dis(INTR_IRQ_GPIO_PORTF);
+    intr_irq_disable(INTR_IRQ_GPIO_PORTF);
     int i;
     for(i = 0; i < 250000; i++);
-    intr_irq_en(INTR_IRQ_GPIO_PORTF);
+    intr_irq_enable(INTR_IRQ_GPIO_PORTF);
 
     bit_t tmp;
     GPIOPinRead(&redLed, &tmp);

@@ -25,7 +25,7 @@
 
 
 /*      Name           Offset    Type Reset       Description                       */
-
+/*----------------------------------------------------------------------------------*/
 #define OFFSET_EN0     0x100   /* RW  0x00000000  Interrupt 0-31 Set Enable         */
 #define OFFSET_EN1     0x104   /* RW  0x00000000  Interrupt 32-63 Set Enable        */
 #define OFFSET_EN2     0x108   /* RW  0x00000000  Interrupt 64-95 Set Enable        */

@@ -2,7 +2,7 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-CG_TOOL_ROOT := /home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3
+CG_TOOL_ROOT := /home/ahmed/ti/ccsv8/tools/compiler/gcc-arm-none-eabi-7-2017-q4-major
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
@@ -14,7 +14,7 @@ ORDERED_OBJS += \
 -Wl,-T"../tm4c123gh6pm.lds" \
 $(GEN_CMDS__FLAG) \
 -Wl,--start-group \
--l:"/media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a" \
+-l:"/media/ahmed/Data/Workshop/Embedded/Microcontroller/ARM/ccs/ZeeDK/lib/Debug_GNU/libZeeDK Lib.a" \
 -Wl,--end-group \
 
 -include ../makefile.init
@@ -140,16 +140,17 @@ all: $(OBJS) $(CMD_SRCS) $(LDS_SRCS) $(GEN_CMDS)
 
 # Tool invocations
 ZeeDK\ GPIO\ Interrupt.out: $(OBJS) $(CMD_SRCS) $(LDS_SRCS) $(GEN_CMDS)
-	@echo 'Building target: $@'
+	@echo 'Building target: "$@"'
 	@echo 'Invoking: GNU Linker'
-	"/home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/arm-none-eabi-gcc" -DPART_TM4C123GH6PM -ffunction-sections -fdata-sections -g -gdwarf-3 -gstrict-dwarf -Wall -specs="nosys.specs" -MD -std=c99 -march=armv7e-m -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wl,-Map,"ZeeDK GPIO Interrupt.map" -o"ZeeDK GPIO Interrupt.out" $(ORDERED_OBJS)
-	@echo 'Finished building target: $@'
+	"/home/ahmed/ti/ccsv8/tools/compiler/gcc-arm-none-eabi-7-2017-q4-major/bin/arm-none-eabi-gcc" -DPART_TM4C123GH6PM -ffunction-sections -fdata-sections -g -gdwarf-3 -gstrict-dwarf -Wall -specs="nosys.specs" -MD -std=c99 -march=armv7e-m -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wl,-Map,"ZeeDK GPIO Interrupt.map" -o"ZeeDK GPIO Interrupt.out" $(ORDERED_OBJS)
+	@echo 'Finished building target: "$@"'
 	@echo ' '
 
 ZeeDK\ GPIO\ Interrupt.hex: $(EXE_OUTPUTS)
+	@echo 'Building files: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo 'Invoking: GNU Objcopy Utility'
-	"/home/ahmed/.ti/ccsv7/tools/compiler/gcc-arm-none-eabi-4_9-2015q3/bin/arm-none-eabi-objcopy"  $(EXE_OUTPUTS__QUOTED) "ZeeDK GPIO Interrupt.hex"
-	@echo 'Finished building: $@'
+	"/home/ahmed/ti/ccsv8/tools/compiler/gcc-arm-none-eabi-7-2017-q4-major/bin/arm-none-eabi-objcopy"  $(EXE_OUTPUTS__QUOTED) "ZeeDK GPIO Interrupt.hex"
+	@echo 'Finished building: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo ' '
 
 # Other Targets

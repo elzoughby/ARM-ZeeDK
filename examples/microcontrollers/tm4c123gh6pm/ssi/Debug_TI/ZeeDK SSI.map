@@ -1,0 +1,286 @@
+******************************************************************************
+                  TI ARM Linker Unix v18.1.1                   
+******************************************************************************
+>> Linked Sat Jun 30 15:31:42 2018
+
+OUTPUT FILE NAME:   <ZeeDK SSI.out>
+ENTRY POINT SYMBOL: "_c_int00_noinit_noargs"  address: 000023ad
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  FLASH                 00000000   00040000  000023f0  0003dc10  R  X
+  SRAM                  20000000   00008000  00000200  00007e00  RW X
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+00000000    00000000    000023f0   000023f0    r-x
+  00000000    00000000    0000026c   0000026c    r-- .intvecs
+  0000026c    0000026c    00002184   00002184    r-x .text
+20000000    20000000    00000200   00000000    rw-
+  20000000    20000000    00000200   00000000    rw- .stack
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.intvecs   0    00000000    0000026c     
+                  00000000    0000026c     startup_ti_tm4c123gh6pm.obj (.intvecs)
+
+.text      0    0000026c    00002184     
+                  0000026c    00001af0     ZeeDK Lib.lib : gpio.obj (.text)
+                  00001d5c    000004fc                   : ssi.obj (.text)
+                  00002258    00000154     ssi.obj (.text)
+                  000023ac    00000030     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.text:_c_int00_noinit_noargs:_c_int00_noinit_noargs)
+                  000023dc    0000000c     startup_ti_tm4c123gh6pm.obj (.text)
+                  000023e8    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : pre_init.c.obj (.text:_system_pre_init)
+                  000023ec    00000004                                   : exit.c.obj (.text:abort:abort)
+
+.cinit     0    00000000    00000000     UNINITIALIZED
+
+.init_array 
+*          0    00000000    00000000     UNINITIALIZED
+
+.stack     0    20000000    00000200     UNINITIALIZED
+                  20000000    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.stack)
+                  20000004    000001fc     --HOLE--
+
+MODULE SUMMARY
+
+       Module                        code   ro data   rw data
+       ------                        ----   -------   -------
+    ./
+       startup_ti_tm4c123gh6pm.obj   12     620       0      
+       ssi.obj                       340    0         0      
+    +--+-----------------------------+------+---------+---------+
+       Total:                        352    620       0      
+                                                             
+    /home/ahmed/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/lib/rtsv7M4_T_le_v4SPD16_eabi.lib
+       boot_cortex_m.c.obj           48     0         0      
+       exit.c.obj                    4      0         0      
+       pre_init.c.obj                4      0         0      
+    +--+-----------------------------+------+---------+---------+
+       Total:                        56     0         0      
+                                                             
+    /media/ahmed/Data/Workshop/Embedded/Microcontroller/ARM/ccs/ZeeDK/lib/Debug_TI/ZeeDK Lib.lib
+       gpio.obj                      6896   0         0      
+       ssi.obj                       1276   0         0      
+    +--+-----------------------------+------+---------+---------+
+       Total:                        8172   0         0      
+                                                             
+       Stack:                        0      0         512    
+    +--+-----------------------------+------+---------+---------+
+       Grand Total:                  8580   620       512    
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address   name                            
+-------   ----                            
+000023ed  C$$EXIT                         
+0000193d  GPIOPinInit                     
+00001c41  GPIOPinRead                     
+00001ad9  GPIOPinWrite                    
+00001a2d  GPIOPortInit                    
+00001cd5  GPIOPortRead                    
+00001b91  GPIOPortWrite                   
+000023dd  ResetISR                        
+20000200  __STACK_END                     
+00000200  __STACK_SIZE                    
+20000200  __STACK_TOP                     
+ffffffff  __TI_pprof_out_hndl             
+ffffffff  __TI_prof_data_size             
+ffffffff  __TI_prof_data_start            
+00000000  __TI_static_base__              
+ffffffff  __binit__                       
+ffffffff  __c_args__                      
+UNDEFED   __mpu_init                      
+20000000  __stack                         
+000023ad  _c_int00_noinit_noargs          
+000023e9  _system_pre_init                
+000023ed  abort                           
+ffffffff  binit                           
+00000000  g_pfnVectors                    
+000018cd  gpio_field_masked_write         
+000018f5  gpio_field_read                 
+00001883  gpio_field_write                
+000015fb  gpio_pin_clear_intr             
+00001677  gpio_pin_get_adc_trgr           
+00000dc9  gpio_pin_get_alt_func           
+00000e83  gpio_pin_get_curr               
+000008f7  gpio_pin_get_dir                
+00001745  gpio_pin_get_dma_trgr           
+00001143  gpio_pin_get_intr               
+000012dd  gpio_pin_get_intr_mode          
+0000104d  gpio_pin_get_lock               
+000015c3  gpio_pin_get_masked_intr_status 
+00000619  gpio_pin_get_mode               
+0000158b  gpio_pin_get_raw_intr_status    
+00000fe1  gpio_pin_lock                   
+00001813  gpio_pin_read                   
+0000162b  gpio_pin_set_adc_trgr           
+00000d71  gpio_pin_set_alt_func           
+00000df9  gpio_pin_set_curr               
+0000070d  gpio_pin_set_dir                
+000016f9  gpio_pin_set_dma_trgr           
+000010f7  gpio_pin_set_intr               
+000011c5  gpio_pin_set_intr_mode          
+000005b1  gpio_pin_set_mode               
+0000100b  gpio_pin_unlock                 
+000017c7  gpio_pin_write                  
+00001615  gpio_port_clear_intr            
+000016dd  gpio_port_get_adc_trgr          
+00000f65  gpio_port_get_curr              
+00000c17  gpio_port_get_dir               
+000017ab  gpio_port_get_dma_trgr          
+000011a9  gpio_port_get_intr              
+000014b7  gpio_port_get_intr_mode         
+000010d1  gpio_port_get_lock              
+000015e3  gpio_port_get_masked_intr_status
+000006a1  gpio_port_get_mode              
+000015ab  gpio_port_get_raw_intr_status   
+00001075  gpio_port_lock                  
+0000184d  gpio_port_masked_write          
+0000186b  gpio_port_read                  
+00001697  gpio_port_set_adc_trgr          
+000003d7  gpio_port_set_clk               
+00000edf  gpio_port_set_curr              
+00000513  gpio_port_set_deepsleep_clk     
+00000a55  gpio_port_set_dir               
+00001765  gpio_port_set_dma_trgr          
+00001163  gpio_port_set_intr              
+000013bb  gpio_port_set_intr_mode         
+00000641  gpio_port_set_mode              
+00000475  gpio_port_set_sleep_clk         
+00001097  gpio_port_unlock                
+00001833  gpio_port_write                 
+00002259  main                            
+00002091  ssi_disable                     
+00001ea9  ssi_disable_clk                 
+00002021  ssi_disable_deepsleep_clk       
+00001f65  ssi_disable_sleep_clk           
+0000207f  ssi_enable                      
+00001e4b  ssi_enable_clk                  
+00001fc3  ssi_enable_deepsleep_clk        
+00001f07  ssi_enable_sleep_clk            
+0000211d  ssi_get_mode                    
+0000223b  ssi_read_char                   
+00002189  ssi_set_clk_divider             
+000021b3  ssi_set_clk_rate                
+00002165  ssi_set_clk_src                 
+00002205  ssi_set_data_size               
+000021e7  ssi_set_frame                   
+000020a3  ssi_set_mode                    
+000021cd  ssi_set_spi_mode                
+0000221f  ssi_write_char                  
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address   name                            
+-------   ----                            
+00000000  __TI_static_base__              
+00000000  g_pfnVectors                    
+00000200  __STACK_SIZE                    
+000003d7  gpio_port_set_clk               
+00000475  gpio_port_set_sleep_clk         
+00000513  gpio_port_set_deepsleep_clk     
+000005b1  gpio_pin_set_mode               
+00000619  gpio_pin_get_mode               
+00000641  gpio_port_set_mode              
+000006a1  gpio_port_get_mode              
+0000070d  gpio_pin_set_dir                
+000008f7  gpio_pin_get_dir                
+00000a55  gpio_port_set_dir               
+00000c17  gpio_port_get_dir               
+00000d71  gpio_pin_set_alt_func           
+00000dc9  gpio_pin_get_alt_func           
+00000df9  gpio_pin_set_curr               
+00000e83  gpio_pin_get_curr               
+00000edf  gpio_port_set_curr              
+00000f65  gpio_port_get_curr              
+00000fe1  gpio_pin_lock                   
+0000100b  gpio_pin_unlock                 
+0000104d  gpio_pin_get_lock               
+00001075  gpio_port_lock                  
+00001097  gpio_port_unlock                
+000010d1  gpio_port_get_lock              
+000010f7  gpio_pin_set_intr               
+00001143  gpio_pin_get_intr               
+00001163  gpio_port_set_intr              
+000011a9  gpio_port_get_intr              
+000011c5  gpio_pin_set_intr_mode          
+000012dd  gpio_pin_get_intr_mode          
+000013bb  gpio_port_set_intr_mode         
+000014b7  gpio_port_get_intr_mode         
+0000158b  gpio_pin_get_raw_intr_status    
+000015ab  gpio_port_get_raw_intr_status   
+000015c3  gpio_pin_get_masked_intr_status 
+000015e3  gpio_port_get_masked_intr_status
+000015fb  gpio_pin_clear_intr             
+00001615  gpio_port_clear_intr            
+0000162b  gpio_pin_set_adc_trgr           
+00001677  gpio_pin_get_adc_trgr           
+00001697  gpio_port_set_adc_trgr          
+000016dd  gpio_port_get_adc_trgr          
+000016f9  gpio_pin_set_dma_trgr           
+00001745  gpio_pin_get_dma_trgr           
+00001765  gpio_port_set_dma_trgr          
+000017ab  gpio_port_get_dma_trgr          
+000017c7  gpio_pin_write                  
+00001813  gpio_pin_read                   
+00001833  gpio_port_write                 
+0000184d  gpio_port_masked_write          
+0000186b  gpio_port_read                  
+00001883  gpio_field_write                
+000018cd  gpio_field_masked_write         
+000018f5  gpio_field_read                 
+0000193d  GPIOPinInit                     
+00001a2d  GPIOPortInit                    
+00001ad9  GPIOPinWrite                    
+00001b91  GPIOPortWrite                   
+00001c41  GPIOPinRead                     
+00001cd5  GPIOPortRead                    
+00001e4b  ssi_enable_clk                  
+00001ea9  ssi_disable_clk                 
+00001f07  ssi_enable_sleep_clk            
+00001f65  ssi_disable_sleep_clk           
+00001fc3  ssi_enable_deepsleep_clk        
+00002021  ssi_disable_deepsleep_clk       
+0000207f  ssi_enable                      
+00002091  ssi_disable                     
+000020a3  ssi_set_mode                    
+0000211d  ssi_get_mode                    
+00002165  ssi_set_clk_src                 
+00002189  ssi_set_clk_divider             
+000021b3  ssi_set_clk_rate                
+000021cd  ssi_set_spi_mode                
+000021e7  ssi_set_frame                   
+00002205  ssi_set_data_size               
+0000221f  ssi_write_char                  
+0000223b  ssi_read_char                   
+00002259  main                            
+000023ad  _c_int00_noinit_noargs          
+000023dd  ResetISR                        
+000023e9  _system_pre_init                
+000023ed  C$$EXIT                         
+000023ed  abort                           
+20000000  __stack                         
+20000200  __STACK_END                     
+20000200  __STACK_TOP                     
+ffffffff  __TI_pprof_out_hndl             
+ffffffff  __TI_prof_data_size             
+ffffffff  __TI_prof_data_start            
+ffffffff  __binit__                       
+ffffffff  __c_args__                      
+ffffffff  binit                           
+UNDEFED   __mpu_init                      
+
+[96 symbols]

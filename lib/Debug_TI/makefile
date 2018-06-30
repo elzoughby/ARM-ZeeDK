@@ -2,14 +2,16 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-CG_TOOL_ROOT := /home/ahmed/.ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS
+CG_TOOL_ROOT := /home/ahmed/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
 "./HAL/gpio.obj" \
+"./HAL/ssi.obj" \
 "./HAL/timer.obj" \
+"./HAL/uart.obj" \
 "./SERVICE/interrupt.obj" \
 
 -include ../makefile.init
@@ -131,18 +133,18 @@ all: ZeeDK\ Lib.lib
 # Tool invocations
 ZeeDK\ Lib.lib: $(OBJS) $(O_SRCS) $(A_SRCS)
 ifneq ($(strip $(ORDERED_OBJS)),)
-	@echo 'Building target: $@'
+	@echo 'Building target: "$@"'
 	@echo 'Invoking: ARM Archiver'
-	"/home/ahmed/.ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/bin/armar" r "ZeeDK Lib.lib" $(ORDERED_OBJS) $(A_SRCS)
-	@echo 'Finished building target: $@'
+	"/home/ahmed/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.1.LTS/bin/armar" r "ZeeDK Lib.lib" $(ORDERED_OBJS) $(A_SRCS)
+	@echo 'Finished building target: "$@"'
 	@echo ' '
 endif
 
 # Other Targets
 clean:
 	-$(RM) $(LIB_OUTPUTS__QUOTED)
-	-$(RM) "HAL/gpio.obj" "HAL/timer.obj" "SERVICE/interrupt.obj" 
-	-$(RM) "HAL/gpio.d" "HAL/timer.d" "SERVICE/interrupt.d" 
+	-$(RM) "HAL/gpio.obj" "HAL/ssi.obj" "HAL/timer.obj" "HAL/uart.obj" "SERVICE/interrupt.obj" 
+	-$(RM) "HAL/gpio.d" "HAL/ssi.d" "HAL/timer.d" "HAL/uart.d" "SERVICE/interrupt.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

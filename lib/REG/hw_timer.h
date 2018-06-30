@@ -1,5 +1,5 @@
 /***********************************************************************
-* Timer Registers for ARM Microcontrollers GPIO Driver                 *
+* Timer Registers for ARM Microcontrollers Timer Driver                *
 * @author Ahmed Elzoughby                                              *
 * @date July 26, 2017                                                  *
 * Purpose: Provide an easy interface to deal with Timers               *
@@ -37,7 +37,7 @@ typedef enum {
 } timer_base_t;
 
 /*      Name                Offset   Type Reset        Description                     */
-
+/*-------------------------------------------------------------------------------------*/
 #define OFFSET_GPTMCFG      0x000  /* RW  0x00000000   GPTM Configuration              */
 #define OFFSET_GPTMTAMR     0x004  /* RW  0x00000000   GPTM Timer A Mode               */
 #define OFFSET_GPTMTBMR     0x008  /* RW  0x00000000   GPTM Timer B Mode               */

@@ -1,7 +1,7 @@
 ******************************************************************************
                   TI ARM Linker Unix v16.9.1                   
 ******************************************************************************
->> Linked Mon Oct  2 20:58:45 2017
+>> Linked Tue Oct  3 19:31:16 2017
 
 OUTPUT FILE NAME:   <ZeeDK Timer.out>
 ENTRY POINT SYMBOL: "_c_int00"  address: 00003805
@@ -245,10 +245,10 @@ ffffffff  binit
 00003051  intr_handler_install            
 00003101  intr_handler_uninstall          
 00002d43  intr_init                       
-00002f41  intr_irq_dis                    
-00002dd9  intr_irq_en                     
-00003277  intr_master_dis                 
-00003271  intr_master_en                  
+00002f41  intr_irq_disable                
+00002dd9  intr_irq_enable                 
+00003277  intr_master_disable             
+00003271  intr_master_enable              
 00002d61  intr_set_default_handler        
 00003253  intr_vect_install               
 00003263  intr_vect_uninstall             
@@ -256,8 +256,8 @@ ffffffff  binit
 20000344  main_func_sp                    
 00003691  memcpy                          
 000029cf  timer_clear_intr                
-00002299  timer_dis                       
-00002229  timer_en                        
+00002299  timer_disable                   
+00002229  timer_enable                    
 0000279b  timer_get_count_dir             
 00002993  timer_get_intr_mask             
 000028b1  timer_get_load_val              
@@ -348,8 +348,8 @@ address   name
 00001e8f  timer_set_clk                   
 00001fb1  timer_set_sleep_clk             
 000020d9  timer_set_deepsleep_clk         
-00002229  timer_en                        
-00002299  timer_dis                       
+00002229  timer_enable                    
+00002299  timer_disable                   
 000022fd  timer_reset_config              
 000023a1  timer_set_mode                  
 000024b3  timer_get_mode                  
@@ -369,15 +369,15 @@ address   name
 000029cf  timer_clear_intr                
 00002d43  intr_init                       
 00002d61  intr_set_default_handler        
-00002dd9  intr_irq_en                     
-00002f41  intr_irq_dis                    
+00002dd9  intr_irq_enable                 
+00002f41  intr_irq_disable                
 00003051  intr_handler_install            
 00003101  intr_handler_uninstall          
 000031ad  intr_handler_get                
 00003253  intr_vect_install               
 00003263  intr_vect_uninstall             
-00003271  intr_master_en                  
-00003277  intr_master_dis                 
+00003271  intr_master_enable              
+00003277  intr_master_disable             
 0000327d  IntrInit                        
 000032a1  GPIOPinAttachIntr               
 00003465  GPIOPortAttachIntr              

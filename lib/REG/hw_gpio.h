@@ -59,7 +59,7 @@
 #endif
 
 /*      Name                    Offset    Type  Reset       Description                         */
-
+/*----------------------------------------------------------------------------------------------*/
 #define OFFSET_GPIODATA         0x000   /* RW   0x00000000  GPIO Data                           */
 #define OFFSET_GPIODATA_NM      0x3FC   /* RW   0x00000000  GPIO Data Not Masked                */
 #define OFFSET_GPIODIR          0x400   /* RW   0x00000000  GPIO Direction                      */

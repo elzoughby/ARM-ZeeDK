@@ -1,0 +1,441 @@
+******************************************************************************
+                  TI ARM Linker Unix v16.9.1                   
+******************************************************************************
+>> Linked Wed Oct 11 12:11:14 2017
+
+OUTPUT FILE NAME:   <ZeeDK UART.out>
+ENTRY POINT SYMBOL: "_c_int00"  address: 00002b31
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  FLASH                 00000000   00040000  00002d72  0003d28e  R  X
+  SRAM                  20000000   00008000  00000220  00007de0  RW X
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+00000000    00000000    00002d78   00002d78    r-x
+  00000000    00000000    0000026c   0000026c    r-- .intvecs
+  0000026c    0000026c    00002ade   00002ade    r-x .text
+  00002d50    00002d50    00000028   00000028    r-- .cinit
+20000000    20000000    00000220   00000000    rw-
+  20000000    20000000    00000200   00000000    rw- .stack
+  20000200    20000200    00000020   00000000    rw- .data
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.intvecs   0    00000000    0000026c     
+                  00000000    0000026c     startup_ti_tm4c123gh6pm.obj (.intvecs)
+
+.text      0    0000026c    00002ade     
+                  0000026c    00001af0     ZeeDK Lib.lib : gpio.obj (.text)
+                  00001d5c    000008f0                   : uart.obj (.text)
+                  0000264c    000001b6     rtsv7M4_T_le_v4SPD16_eabi.lib : fd_add_t2.obj (.text)
+                  00002802    000000fc                                   : fd_mul_t2.obj (.text)
+                  000028fe    00000002                                   : mpu_init.obj (.text)
+                  00002900    000000bc     uart.obj (.text)
+                  000029bc    0000009c     rtsv7M4_T_le_v4SPD16_eabi.lib : memcpy_t2.obj (.text)
+                  00002a58    00000070                                   : autoinit.obj (.text)
+                  00002ac8    00000068                                   : copy_decompress_lzss.obj (.text:decompress:lzss)
+                  00002b30    00000054                                   : boot.obj (.text)
+                  00002b84    00000054                                   : exit.obj (.text)
+                  00002bd8    0000004c                                   : cpy_tbl.obj (.text)
+                  00002c24    00000048                                   : fd_toi_t2.obj (.text)
+                  00002c6c    00000044                                   : fd_tou_t2.obj (.text)
+                  00002cb0    0000002e                                   : i_tofd_t2.obj (.text)
+                  00002cde    00000020                                   : u_tofd_t2.obj (.text)
+                  00002cfe    00000002                                   : startup.obj (.text)
+                  00002d00    00000018                                   : args_main.obj (.text)
+                  00002d18    00000014                                   : _lock.obj (.text)
+                  00002d2c    0000000e                                   : copy_decompress_none.obj (.text:decompress:none)
+                  00002d3a    0000000c     startup_ti_tm4c123gh6pm.obj (.text)
+                  00002d46    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : pre_init.obj (.text)
+
+.cinit     0    00002d50    00000028     
+                  00002d50    00000016     (.cinit..data.load) [load image, compression = lzss]
+                  00002d66    00000002     --HOLE-- [fill = 0]
+                  00002d68    00000008     (__TI_handler_table)
+                  00002d70    00000008     (__TI_cinit_table)
+
+.init_array 
+*          0    00000000    00000000     UNINITIALIZED
+
+.data      0    20000200    00000020     UNINITIALIZED
+                  20000200    0000000c     rtsv7M4_T_le_v4SPD16_eabi.lib : exit.obj (.data:$O1$$)
+                  2000020c    00000008                                   : _lock.obj (.data:$O1$$)
+                  20000214    00000006     uart.obj (.data:message)
+                  2000021a    00000002     --HOLE--
+                  2000021c    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : stkdepth_vars.obj (.data)
+
+.stack     0    20000000    00000200     UNINITIALIZED
+                  20000000    00000200     --HOLE--
+
+MODULE SUMMARY
+
+       Module                        code    ro data   rw data
+       ------                        ----    -------   -------
+    ./
+       startup_ti_tm4c123gh6pm.obj   12      620       0      
+       uart.obj                      188     0         6      
+    +--+-----------------------------+-------+---------+---------+
+       Total:                        200     620       6      
+                                                              
+    /home/ahmed/.ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/lib/rtsv7M4_T_le_v4SPD16_eabi.lib
+       fd_add_t2.obj                 438     0         0      
+       fd_mul_t2.obj                 252     0         0      
+       memcpy_t2.obj                 156     0         0      
+       autoinit.obj                  112     0         0      
+       copy_decompress_lzss.obj      104     0         0      
+       exit.obj                      84      0         12     
+       boot.obj                      84      0         0      
+       cpy_tbl.obj                   76      0         0      
+       fd_toi_t2.obj                 72      0         0      
+       fd_tou_t2.obj                 68      0         0      
+       i_tofd_t2.obj                 46      0         0      
+       u_tofd_t2.obj                 32      0         0      
+       _lock.obj                     20      0         8      
+       args_main.obj                 24      0         0      
+       copy_decompress_none.obj      14      0         0      
+       pre_init.obj                  4       0         0      
+       stkdepth_vars.obj             0       0         4      
+       mpu_init.obj                  2       0         0      
+       startup.obj                   2       0         0      
+    +--+-----------------------------+-------+---------+---------+
+       Total:                        1590    0         24     
+                                                              
+    /media/ahmed/Data/Workshop/Embedded Systems/Microcontroller/ARM Microcontroller/CodeComposerStudio/ZeeDK/lib/Debug_TI/ZeeDK Lib.lib
+       gpio.obj                      6896    0         0      
+       uart.obj                      2288    0         0      
+    +--+-----------------------------+-------+---------+---------+
+       Total:                        9184    0         0      
+                                                              
+       Stack:                        0       0         512    
+       Linker Generated:             0       38        0      
+    +--+-----------------------------+-------+---------+---------+
+       Grand Total:                  10974   658       542    
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 00002d70 records: 1, size/record: 8, table size: 8
+	.data: load addr=00002d50, load size=00000016 bytes, run addr=20000200, run size=00000020 bytes, compression=lzss
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 00002d68 records: 2, size/record: 4, table size: 8
+	index: 0, handler: __TI_decompress_lzss
+	index: 1, handler: __TI_decompress_none
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address   name                            
+-------   ----                            
+00002b85  C$$EXIT                         
+0000193d  GPIOPinInit                     
+00001c41  GPIOPinRead                     
+00001ad9  GPIOPinWrite                    
+00001a2d  GPIOPortInit                    
+00001cd5  GPIOPortRead                    
+00001b91  GPIOPortWrite                   
+00002d3b  ResetISR                        
+UNDEFED   SHT$$INIT_ARRAY$$Base           
+UNDEFED   SHT$$INIT_ARRAY$$Limit          
+20000200  __STACK_END                     
+00000200  __STACK_SIZE                    
+20000200  __STACK_TOP                     
+00002d70  __TI_CINIT_Base                 
+00002d78  __TI_CINIT_Limit                
+00002d68  __TI_Handler_Table_Base         
+00002d70  __TI_Handler_Table_Limit        
+00002a59  __TI_auto_init                  
+20000200  __TI_cleanup_ptr                
+00002ac9  __TI_decompress_lzss            
+00002d2d  __TI_decompress_none            
+20000204  __TI_dtors_ptr                  
+20000208  __TI_enable_exit_profile_output 
+ffffffff  __TI_pprof_out_hndl             
+ffffffff  __TI_prof_data_size             
+ffffffff  __TI_prof_data_start            
+00000000  __TI_static_base__              
+00002c25  __aeabi_d2iz                    
+00002c6d  __aeabi_d2uiz                   
+00002657  __aeabi_dadd                    
+00002803  __aeabi_dmul                    
+0000264d  __aeabi_dsub                    
+00002cb1  __aeabi_i2d                     
+000029bd  __aeabi_memcpy                  
+000029bd  __aeabi_memcpy4                 
+000029bd  __aeabi_memcpy8                 
+00002cdf  __aeabi_ui2d                    
+ffffffff  __binit__                       
+ffffffff  __c_args__                      
+000028ff  __mpu_init                      
+20000000  __stack                         
+00002d01  _args_main                      
+00002b31  _c_int00                        
+2000020c  _lock                           
+00002d27  _nop                            
+00002d1f  _register_lock                  
+00002d19  _register_unlock                
+00002cff  _system_post_cinit              
+00002d47  _system_pre_init                
+20000210  _unlock                         
+00002b89  abort                           
+ffffffff  binit                           
+00002bd9  copy_in                         
+00002b91  exit                            
+00000000  g_pfnVectors                    
+000018cd  gpio_field_masked_write         
+000018f5  gpio_field_read                 
+00001883  gpio_field_write                
+000015fb  gpio_pin_clear_intr             
+00001677  gpio_pin_get_adc_trgr           
+00000dc9  gpio_pin_get_alt_func           
+00000e83  gpio_pin_get_curr               
+000008f7  gpio_pin_get_dir                
+00001745  gpio_pin_get_dma_trgr           
+00001143  gpio_pin_get_intr               
+000012dd  gpio_pin_get_intr_mode          
+0000104d  gpio_pin_get_lock               
+000015c3  gpio_pin_get_masked_intr_status 
+00000619  gpio_pin_get_mode               
+0000158b  gpio_pin_get_raw_intr_status    
+00000fe1  gpio_pin_lock                   
+00001813  gpio_pin_read                   
+0000162b  gpio_pin_set_adc_trgr           
+00000d71  gpio_pin_set_alt_func           
+00000df9  gpio_pin_set_curr               
+0000070d  gpio_pin_set_dir                
+000016f9  gpio_pin_set_dma_trgr           
+000010f7  gpio_pin_set_intr               
+000011c5  gpio_pin_set_intr_mode          
+000005b1  gpio_pin_set_mode               
+0000100b  gpio_pin_unlock                 
+000017c7  gpio_pin_write                  
+00001615  gpio_port_clear_intr            
+000016dd  gpio_port_get_adc_trgr          
+00000f65  gpio_port_get_curr              
+00000c17  gpio_port_get_dir               
+000017ab  gpio_port_get_dma_trgr          
+000011a9  gpio_port_get_intr              
+000014b7  gpio_port_get_intr_mode         
+000010d1  gpio_port_get_lock              
+000015e3  gpio_port_get_masked_intr_status
+000006a1  gpio_port_get_mode              
+000015ab  gpio_port_get_raw_intr_status   
+00001075  gpio_port_lock                  
+0000184d  gpio_port_masked_write          
+0000186b  gpio_port_read                  
+00001697  gpio_port_set_adc_trgr          
+000003d7  gpio_port_set_clk               
+00000edf  gpio_port_set_curr              
+00000513  gpio_port_set_deepsleep_clk     
+00000a55  gpio_port_set_dir               
+00001765  gpio_port_set_dma_trgr          
+00001163  gpio_port_set_intr              
+000013bb  gpio_port_set_intr_mode         
+00000641  gpio_port_set_mode              
+00000475  gpio_port_set_sleep_clk         
+00001097  gpio_port_unlock                
+00001833  gpio_port_write                 
+00002901  main                            
+2000021c  main_func_sp                    
+000029bd  memcpy                          
+000025f5  uart_clear_intr                 
+00002279  uart_disable                    
+000024d9  uart_disable_break              
+00001eff  uart_disable_clk                
+000021c1  uart_disable_deepsleep_clk      
+00002483  uart_disable_fifo               
+0000229d  uart_disable_high_speed         
+00002561  uart_disable_loopback           
+0000253d  uart_disable_rx                 
+0000204b  uart_disable_sleep_clk          
+000024a7  uart_disable_two_stop_bit       
+0000250d  uart_disable_tx                 
+00002267  uart_enable                     
+000024bd  uart_enable_break               
+00001e59  uart_enable_clk                 
+000020f5  uart_enable_deepsleep_clk       
+00002471  uart_enable_fifo                
+0000228b  uart_enable_high_speed          
+0000254f  uart_enable_loopback            
+00002525  uart_enable_rx                  
+00001fa5  uart_enable_sleep_clk           
+00002495  uart_enable_two_stop_bit        
+000024f1  uart_enable_tx                  
+000025d5  uart_get_masked_intr_status     
+000025bf  uart_get_raw_intr_status        
+00002635  uart_read_char                  
+000022d3  uart_set_baudrate               
+000022b5  uart_set_clk_src                
+00002455  uart_set_data_len               
+000025ab  uart_set_intr_mask              
+00002389  uart_set_parity_mode            
+0000258f  uart_set_rx_fifo_level          
+00002573  uart_set_tx_fifo_level          
+00002609  uart_write_char                 
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address   name                            
+-------   ----                            
+00000000  __TI_static_base__              
+00000000  g_pfnVectors                    
+00000200  __STACK_SIZE                    
+000003d7  gpio_port_set_clk               
+00000475  gpio_port_set_sleep_clk         
+00000513  gpio_port_set_deepsleep_clk     
+000005b1  gpio_pin_set_mode               
+00000619  gpio_pin_get_mode               
+00000641  gpio_port_set_mode              
+000006a1  gpio_port_get_mode              
+0000070d  gpio_pin_set_dir                
+000008f7  gpio_pin_get_dir                
+00000a55  gpio_port_set_dir               
+00000c17  gpio_port_get_dir               
+00000d71  gpio_pin_set_alt_func           
+00000dc9  gpio_pin_get_alt_func           
+00000df9  gpio_pin_set_curr               
+00000e83  gpio_pin_get_curr               
+00000edf  gpio_port_set_curr              
+00000f65  gpio_port_get_curr              
+00000fe1  gpio_pin_lock                   
+0000100b  gpio_pin_unlock                 
+0000104d  gpio_pin_get_lock               
+00001075  gpio_port_lock                  
+00001097  gpio_port_unlock                
+000010d1  gpio_port_get_lock              
+000010f7  gpio_pin_set_intr               
+00001143  gpio_pin_get_intr               
+00001163  gpio_port_set_intr              
+000011a9  gpio_port_get_intr              
+000011c5  gpio_pin_set_intr_mode          
+000012dd  gpio_pin_get_intr_mode          
+000013bb  gpio_port_set_intr_mode         
+000014b7  gpio_port_get_intr_mode         
+0000158b  gpio_pin_get_raw_intr_status    
+000015ab  gpio_port_get_raw_intr_status   
+000015c3  gpio_pin_get_masked_intr_status 
+000015e3  gpio_port_get_masked_intr_status
+000015fb  gpio_pin_clear_intr             
+00001615  gpio_port_clear_intr            
+0000162b  gpio_pin_set_adc_trgr           
+00001677  gpio_pin_get_adc_trgr           
+00001697  gpio_port_set_adc_trgr          
+000016dd  gpio_port_get_adc_trgr          
+000016f9  gpio_pin_set_dma_trgr           
+00001745  gpio_pin_get_dma_trgr           
+00001765  gpio_port_set_dma_trgr          
+000017ab  gpio_port_get_dma_trgr          
+000017c7  gpio_pin_write                  
+00001813  gpio_pin_read                   
+00001833  gpio_port_write                 
+0000184d  gpio_port_masked_write          
+0000186b  gpio_port_read                  
+00001883  gpio_field_write                
+000018cd  gpio_field_masked_write         
+000018f5  gpio_field_read                 
+0000193d  GPIOPinInit                     
+00001a2d  GPIOPortInit                    
+00001ad9  GPIOPinWrite                    
+00001b91  GPIOPortWrite                   
+00001c41  GPIOPinRead                     
+00001cd5  GPIOPortRead                    
+00001e59  uart_enable_clk                 
+00001eff  uart_disable_clk                
+00001fa5  uart_enable_sleep_clk           
+0000204b  uart_disable_sleep_clk          
+000020f5  uart_enable_deepsleep_clk       
+000021c1  uart_disable_deepsleep_clk      
+00002267  uart_enable                     
+00002279  uart_disable                    
+0000228b  uart_enable_high_speed          
+0000229d  uart_disable_high_speed         
+000022b5  uart_set_clk_src                
+000022d3  uart_set_baudrate               
+00002389  uart_set_parity_mode            
+00002455  uart_set_data_len               
+00002471  uart_enable_fifo                
+00002483  uart_disable_fifo               
+00002495  uart_enable_two_stop_bit        
+000024a7  uart_disable_two_stop_bit       
+000024bd  uart_enable_break               
+000024d9  uart_disable_break              
+000024f1  uart_enable_tx                  
+0000250d  uart_disable_tx                 
+00002525  uart_enable_rx                  
+0000253d  uart_disable_rx                 
+0000254f  uart_enable_loopback            
+00002561  uart_disable_loopback           
+00002573  uart_set_tx_fifo_level          
+0000258f  uart_set_rx_fifo_level          
+000025ab  uart_set_intr_mask              
+000025bf  uart_get_raw_intr_status        
+000025d5  uart_get_masked_intr_status     
+000025f5  uart_clear_intr                 
+00002609  uart_write_char                 
+00002635  uart_read_char                  
+0000264d  __aeabi_dsub                    
+00002657  __aeabi_dadd                    
+00002803  __aeabi_dmul                    
+000028ff  __mpu_init                      
+00002901  main                            
+000029bd  __aeabi_memcpy                  
+000029bd  __aeabi_memcpy4                 
+000029bd  __aeabi_memcpy8                 
+000029bd  memcpy                          
+00002a59  __TI_auto_init                  
+00002ac9  __TI_decompress_lzss            
+00002b31  _c_int00                        
+00002b85  C$$EXIT                         
+00002b89  abort                           
+00002b91  exit                            
+00002bd9  copy_in                         
+00002c25  __aeabi_d2iz                    
+00002c6d  __aeabi_d2uiz                   
+00002cb1  __aeabi_i2d                     
+00002cdf  __aeabi_ui2d                    
+00002cff  _system_post_cinit              
+00002d01  _args_main                      
+00002d19  _register_unlock                
+00002d1f  _register_lock                  
+00002d27  _nop                            
+00002d2d  __TI_decompress_none            
+00002d3b  ResetISR                        
+00002d47  _system_pre_init                
+00002d68  __TI_Handler_Table_Base         
+00002d70  __TI_CINIT_Base                 
+00002d70  __TI_Handler_Table_Limit        
+00002d78  __TI_CINIT_Limit                
+20000000  __stack                         
+20000200  __STACK_END                     
+20000200  __STACK_TOP                     
+20000200  __TI_cleanup_ptr                
+20000204  __TI_dtors_ptr                  
+20000208  __TI_enable_exit_profile_output 
+2000020c  _lock                           
+20000210  _unlock                         
+2000021c  main_func_sp                    
+ffffffff  __TI_pprof_out_hndl             
+ffffffff  __TI_prof_data_size             
+ffffffff  __TI_prof_data_start            
+ffffffff  __binit__                       
+ffffffff  __c_args__                      
+ffffffff  binit                           
+UNDEFED   SHT$$INIT_ARRAY$$Base           
+UNDEFED   SHT$$INIT_ARRAY$$Limit          
+
+[145 symbols]
